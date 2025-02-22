@@ -26,7 +26,7 @@
     <ClInclude Include="TradePrice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Countoccurence.h">
+    <ClInclude Include="functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
