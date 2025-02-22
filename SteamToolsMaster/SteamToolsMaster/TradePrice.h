@@ -1,6 +1,6 @@
 #ifndef TRADEPRICE_H
 #define TRADEPRICE_H
-void TradePrice() {
+void TradePrice(int &argc, const char* argv[]) {
 
 }
 

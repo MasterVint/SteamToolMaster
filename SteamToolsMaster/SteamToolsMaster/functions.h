@@ -50,5 +50,6 @@ bool CompareCharArray(const char* argv, const char* comparative[]) {
 			return ParameterResult;
 		}
 	}
+	return false;
 }
 #endif
