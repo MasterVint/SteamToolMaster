@@ -32,8 +32,8 @@ bool CompareCharArray(const char* argv, const char* comparative[]) {
 	size_t input_size = strlen(argv);
 	size_t compare_size = 0;
 
-	size_t Parameters = countArguments(comparative);
-	for (size_t o = 0; o < Parameters; o++) {
+	size_t ParameterCount = countArguments(comparative);
+	for (size_t o = 0; o < ParameterCount; o++) {
 		bool ParameterResult = true;
 		compare_size = strlen(comparative[o]);
 		if (compare_size == input_size) {
