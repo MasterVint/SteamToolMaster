@@ -9,7 +9,6 @@ int main(int argc, const char* argv[]) {
 		printf("See \"stmtool [command] help\" for specific help");
 		return 0;
 	}
-
 	if (CompareCharArray(argv[1], "tradeprice") || CompareCharArray(argv[1], "trp")) {
 		if (argc <= 3 && CompareCharArray(argv[2], "help")) {
 			printf("// A script made to confirm the price of items when buying in bulk");
