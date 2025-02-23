@@ -1,8 +1,10 @@
 #include <iostream>
 #include "functions.h"
+#include "DataClass.h"
 using namespace std;
 
 int main(int argc, const char* argv[]) {
+	ToolSettings Settings;
 	if (argc <= 1) {
 		printf("usage: stmtool [ tradeprice | trp ] [ kitmaker | ktm ]\n\n");
 		printf("See \"stmtool [command] help\" for specific help");

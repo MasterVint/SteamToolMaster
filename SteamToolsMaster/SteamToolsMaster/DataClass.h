@@ -2,7 +2,7 @@
 #define DATACLASS_H
 #include <iostream>
 //a class for the data such as settings, keyprice and command aliases
-class Settings {
+class ToolSettings {
 private:
     // Dynamic arrays to store the aliases
     const char** TradePriceAlias;
