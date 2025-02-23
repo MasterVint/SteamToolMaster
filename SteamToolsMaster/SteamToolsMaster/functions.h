@@ -1,24 +1,6 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 #include <iostream>
-bool CompareCharArray(const char* argv, const char* comparative) {
-	size_t input_size = strlen(argv);
-	size_t compare_size = strlen(comparative);
-
-	if (compare_size == input_size) {
-		for (size_t i = 0; i < compare_size; i++) {
-			if (argv[i] != comparative[i]) {
-				return false;
-			}
-		}
-	}
-	else {
-		return false;
-	}
-
-	return true;
-
-}
 
 size_t countArguments(const char* args[]) {
 	size_t count = 0;
@@ -29,25 +11,10 @@ size_t countArguments(const char* args[]) {
 }
 
 bool CompareCharArray(const char* argv, const char* comparative[]) {
-	size_t input_size = strlen(argv);
-	size_t compare_size = 0;
-
 	size_t ParameterCount = countArguments(comparative);
-	for (size_t o = 0; o < ParameterCount; o++) {
-		bool ParameterResult = true;
-		compare_size = strlen(comparative[o]);
-		if (compare_size == input_size) {
-			for (size_t i = 0; i < compare_size; i++) {
-				if (argv[i] != comparative[o][i]) {
-					ParameterResult =  false;
-				}
-			}
-		}
-		else {
-			ParameterResult = false;
-		}
-		if (ParameterResult) {
-			return ParameterResult;
+	for (size_t i = 0; i < ParameterCount; i++) {
+		if (strcmp(argv, comparative[ParameterCount])) {
+			return true;
 		}
 	}
 	return false;

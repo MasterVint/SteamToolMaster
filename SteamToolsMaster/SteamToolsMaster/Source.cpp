@@ -4,6 +4,11 @@
 using namespace std;
 
 int main(int argc, const char* argv[]) {
+	//Test
+	argv[1] = "test";
+	argv[2] = "hello";
+	argc = 3;
+
 	ToolSettings Settings;
 	if (argc <= 1) {
 		printf("usage: stmtool [ tradeprice | trp ] [ kitmaker | ktm ]\n\n");
@@ -12,8 +17,8 @@ int main(int argc, const char* argv[]) {
 	}
 
 	//Parse Settings.cfg
-	if (CompareCharArray(argv[1], "tradeprice") || CompareCharArray(argv[1], "trp")) {
-		if (argc <= 3 && CompareCharArray(argv[2], "help")) {
+	if (strcmp(argv[1], "tradeprice") || strcmp(argv[1], "trp")) {
+		if (argc <= 3 && strcmp(argv[2], "help")) {
 			printf("// A script made to confirm the price of items when buying in bulk");
 
 			//howto guide since they asked for help

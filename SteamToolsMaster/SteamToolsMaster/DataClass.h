@@ -19,7 +19,7 @@ private:
     size_t metal_keyprice[4] = {60,2,2,1}; // Refined, Reclaimed, Scrap, Weapons
     size_t USD_keyprice = 178; // divide by 100 for actual price
 public:
-    Settings() {
+    ToolSettings() {
         TradePriceAlias = new const char* [current_cap];
         KitMakerAlias = new const char* [current_cap];
         SetKeyAlias = new const char* [current_cap];
@@ -34,7 +34,7 @@ public:
         }
     }
 
-    ~Settings() {
+    ~ToolSettings() {
         // Clean up dynamically allocated memory
         for (size_t i = 0; i < TradePriceCount; i++) {
             delete[] TradePriceAlias[i];
@@ -61,11 +61,11 @@ public:
         return temp;
     }
 
-    void AddTradeAlias(const char* value) {
+    void AddAlias(const char* value, const char* category) {
         size_t newsize = 0;
         const char** targetArray = nullptr;
         size_t count = 0;
-
+       // if (strcmp())
         targetArray = TradePriceAlias;
         count = TradePriceCount;
         newsize = TradePriceCount + 1;
@@ -76,7 +76,8 @@ public:
 
         size_t valueLen = strlen(value) + 1;
         targetArray[count] = new char[valueLen];
-        strcpy((char*)targetArray[count], value);
+       // strcpy();
+        //strcpy_s((char*)targetArray[count], value);
         count++;
 
     }
