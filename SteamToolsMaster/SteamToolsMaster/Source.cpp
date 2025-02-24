@@ -12,7 +12,7 @@ int main(int argc, const char* argv[]) {
 	for (size_t i = 0; i < 1000000000; i++) {
 		ToolSettings Settings;
 		Settings.AddAlias("sigma", "TradePriceAlias");
-		std::cout << "sigma" << std::endl;
+		//std::cout << "sigma" << std::endl;
 	}
 	std::cout << "end" << "\n";
 	if (argc <= 1) {
