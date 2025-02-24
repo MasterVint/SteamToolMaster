@@ -13,7 +13,7 @@ size_t countArguments(const char* args[]) {
 bool CompareCharArray(const char* argv, const char* comparative[]) {
 	size_t ParameterCount = countArguments(comparative);
 	for (size_t i = 0; i < ParameterCount; i++) {
-		if (strcmp(argv, comparative[ParameterCount])) {
+		if (strcmp(argv, comparative[ParameterCount]) == 0) {
 			return true;
 		}
 	}

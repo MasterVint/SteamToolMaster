@@ -63,10 +63,12 @@ public:
 
     void AddAlias(const char* value, const char* category) {
         size_t newsize = 0;
-        const char** targetArray = nullptr;
+        const char** targetArray;
         size_t count = 0;
 
-        if (strcmp(category, "TradePriceAlias")) {
+        if (strcmp(category, "TradePriceAlias") == 0) {
+            //sgiam
+            std::cout << "!iim here" << "\n";
             targetArray = TradePriceAlias;
             count = TradePriceCount;
             TradePriceCount += 1;
@@ -75,7 +77,7 @@ public:
                 TradePriceAlias = resizeArray(TradePriceAlias, count, newsize);
             }
         }
-        else if (strcmp(category, "KitMakerAlias")) {
+        else if (strcmp(category, "KitMakerAlias") == 0) {
             targetArray = KitMakerAlias;
             count = KitMakerCount;
             KitMakerCount += 1;
@@ -84,7 +86,7 @@ public:
                 KitMakerAlias = resizeArray(KitMakerAlias, count, newsize);
             }
         }
-        else if (strcmp(category, "SetKeyAlias")) {
+        else if (strcmp(category, "SetKeyAlias") == 0) {
             targetArray = SetKeyAlias;
             count = SetKeyCount;
             SetKeyCount += 1;
@@ -103,6 +105,9 @@ public:
        // strcpy((char*)targetArray[count],,value);
         strcpy_s((char*)targetArray[count], sizeof(targetArray[count]), value);
         count++;
+        for (size_t i = 0; i < count; i++) {
+            std::cout << targetArray[i] << '\n';
+        }
 
     }
 
