@@ -53,13 +53,26 @@ public:
         if (strcmp(category, "TradePriceAlias") == 0) {
             InputCount = TradePriceCount + 1;
             //we want to add a single item to TradePriceAlias
-            //resize to new size
             if (InputCount > INITIAL_CAP) {
                 TradePriceAlias = resizeArray(TradePriceAlias, TradePriceCount, InputCount);
                 //this means that our array is too small for our new_value, thus we resize
             }
             TradePriceAlias[TradePriceCount] = new_value;
             TradePriceCount++;
+        } else if (strcmp(category, "KitMakerAlias") == 0) {
+            InputCount = KitMakerCount + 1;
+            if (InputCount > INITIAL_CAP) {
+                KitMakerAlias = resizeArray(KitMakerAlias, KitMakerCount, InputCount);
+            }
+            KitMakerAlias[KitMakerCount] = new_value;
+            KitMakerCount++;
+        } else if (strcmp(category, "SetKeyAlias") == 0) {
+            InputCount = SetKeyCount + 1;
+            if (InputCount > INITIAL_CAP) {
+                SetKeyAlias = resizeArray(SetKeyAlias, SetKeyCount, InputCount);
+            }
+            SetKeyAlias[SetKeyCount] = new_value;
+            SetKeyCount++;
         }
     }
 
