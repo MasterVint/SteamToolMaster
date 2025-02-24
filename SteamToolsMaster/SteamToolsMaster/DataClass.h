@@ -23,9 +23,9 @@ public:
         TradePriceAlias = new const char* [current_cap];
         KitMakerAlias = new const char* [current_cap];
         SetKeyAlias = new const char* [current_cap];
-        TradePriceCount = 0;
-        KitMakerCount = 0;
-        SetKeyCount = 0;
+        TradePriceCount = 1;
+        KitMakerCount = 1;
+        SetKeyCount = 1;
 
         for (size_t i = 0; i < current_cap; i++) {
             TradePriceAlias[i] = nullptr;
@@ -65,19 +65,43 @@ public:
         size_t newsize = 0;
         const char** targetArray = nullptr;
         size_t count = 0;
-       // if (strcmp())
-        targetArray = TradePriceAlias;
-        count = TradePriceCount;
-        newsize = TradePriceCount + 1;
 
-        if (newsize > current_cap) {
-            TradePriceAlias = resizeArray(TradePriceAlias, count, newsize);
+        if (strcmp(category, "TradePriceAlias")) {
+            targetArray = TradePriceAlias;
+            count = TradePriceCount;
+            TradePriceCount += 1;
+            newsize = TradePriceCount;
+            if (newsize > current_cap) {
+                TradePriceAlias = resizeArray(TradePriceAlias, count, newsize);
+            }
+        }
+        else if (strcmp(category, "KitMakerAlias")) {
+            targetArray = KitMakerAlias;
+            count = KitMakerCount;
+            KitMakerCount += 1;
+            newsize = KitMakerCount;
+            if (newsize > current_cap) {
+                KitMakerAlias = resizeArray(KitMakerAlias, count, newsize);
+            }
+        }
+        else if (strcmp(category, "SetKeyAlias")) {
+            targetArray = SetKeyAlias;
+            count = SetKeyCount;
+            SetKeyCount += 1;
+            newsize = SetKeyCount;
+            if (newsize > current_cap) {
+                SetKeyAlias = resizeArray(SetKeyAlias, count, newsize);
+            }
+        }
+        else {
+            return;
         }
 
         size_t valueLen = strlen(value) + 1;
         targetArray[count] = new char[valueLen];
        // strcpy();
-        //strcpy_s((char*)targetArray[count], value);
+       // strcpy((char*)targetArray[count],,value);
+        strcpy_s((char*)targetArray[count], sizeof(targetArray[count]), value);
         count++;
 
     }
