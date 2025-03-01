@@ -41,7 +41,7 @@ public:
 
     const char** resizeArray(const char** old_array, size_t &oldsize, size_t &newsize) {
         const char** new_array = new const char* [newsize];
-        for (size_t i = 0; i < oldsize; i++) {
+        for (size_t i = 0; i < newsize; i++) {
             new_array[i] = old_array[i];
         }
         delete[] old_array;

@@ -17,7 +17,7 @@ int main(int argc, const char* argv[]) {
 	std::cout << "end" << "\n";
 	if (argc <= 1) {
 		printf("usage: stmtool [ tradeprice | trp ] [ kitmaker | ktm ]\n\n");
-		printf("See \"stmtool [command] help\" for specific help");
+		printf("See \"stmtool [command] help\" for specific command help");
 		return 0;
 	}
 	std::cout << "end" << "\n";
