@@ -4,17 +4,22 @@
 using namespace std;
 
 int main(int argc, const char* argv[]) {
+	ToolSettings Settings;
+
 	//Test
-	argv[1] = "test";
-	argv[2] = "hello";
-	argc = 3;
-	//Check for memory leak with this
-	for (size_t i = 0; i < 1000000000; i++) {
-		ToolSettings Settings;
-		Settings.AddAlias("sigma", "TradePriceAlias");
-		//std::cout << "sigma" << std::endl;
-	}
-	std::cout << "end" << "\n";
+	//argv[1] = "test";
+	//argv[2] = "hello";
+	//argc = 3;
+	////Check for memory leak with this
+	//for (size_t i = 0; i < 1000000000; i++) {
+	//	Settings.AddAlias("trp", "TradePriceAlias");
+	//	Settings.AddAlias("trade", "TradePriceAlias");
+	//}
+	//std::cout << "End of Test" << "\n";
+
+	Settings.AddAlias("trp", "TradePriceAlias");
+	Settings.AddAlias("trade", "TradePriceAlias");
+
 	if (argc <= 1) {
 		printf("usage: stmtool [ tradeprice | trp ] [ kitmaker | ktm ]\n\n");
 		printf("See \"stmtool [command] help\" for specific command help");
