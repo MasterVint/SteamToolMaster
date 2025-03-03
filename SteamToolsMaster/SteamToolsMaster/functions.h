@@ -53,42 +53,46 @@ size_t CharToNumber(char number) {
 	return 0;
 }
 
-size_t AskForPositiveNumber(char* input, const size_t &MAX_SIZE) {
-	size_t ReturnValue = 0;
+bool AskForPositiveNumber(size_t &ReturnValue, char* input, const size_t &MAX_SIZE) {
 	size_t numbersize = 0;
+	std::cin.clear();
 	std::cin.get(input, MAX_SIZE);
+	std::cin.ignore(1000, '\n');
 
 	for (size_t i = 0; i < MAX_SIZE; i++) {
 		if (int(input[i]) == 0) {
+			if (i == 0) {
+				return false;
+			}
 			break; // /0 character, aka no more input
 		}
-		if (int(input[i]) >= 48 || int(input[i]) <= 57) {
+		if (int(input[i]) >= 48 && int(input[i]) <= 57) {
 			//character is a number
 			numbersize++;
 		}
 		else {
 			//its not a number, this means that the input is invalid
 			numbersize = -1;
+			return false;
 			break;
 		}
 		//std::cout << int(input[i]) << std::endl;
 	}
 
 	for (size_t i = numbersize; i > 0; i--) {
-		std::cout << "I: " << i << std::endl;
+		//std::cout << "I: " << i << std::endl;
 		//2, 1
 		ReturnValue += CharToNumber(input[numbersize - i]) * intPow(10, i - 1);//std::pow(10, numbersize - 1);
 	}
-	std::cout << "returning" << std::endl;
-	return ReturnValue; 
+	return true;
 }
 
-size_t ReturnKeyWeaponValue(size_t keyPrice[4], size_t keyAmount) {
+size_t ReturnKeyWeaponValue(size_t keyPrice[4]) {
 	size_t weapon_value = 0;
 	weapon_value += keyPrice[0] * 18; //refined
-	weapon_value += keyPrice[0] * 6; // reclaimed
-	weapon_value += keyPrice[0] * 2; // scrap
-	weapon_value += keyPrice[0] * 1; //weapon
+	weapon_value += keyPrice[1] * 6; // reclaimed
+	weapon_value += keyPrice[2] * 2; // scrap
+	weapon_value += keyPrice[3] * 1; //weapon
 	return weapon_value;
 
 }
@@ -105,12 +109,11 @@ void MetalHelper(size_t &CheckAgainst, size_t &Increasing, size_t denomination) 
 	}
 }
 
+//a function to return everything to proper denominations
+//Example: if you have 4 scrap metal, we can convert 3 of those into 1 reclaimed metal since 3 scrap = 1 reclaimed, giving us an end value of 1 reclaimed + 1 scrap
 void CleanValue(size_t &refined, size_t &reclaimed, size_t &scrap, size_t &weapons) {
 	MetalHelper(weapons, scrap, 2);
 	MetalHelper(scrap, reclaimed, 3);
 	MetalHelper(reclaimed, refined, 3);
-
-	//size_t Value[4] = { refined, reclaimed, scrap, weapons }; // ref, reclaimed, scrap, weapons
-	//return Value;
 }
 #endif

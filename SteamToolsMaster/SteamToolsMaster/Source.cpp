@@ -2,6 +2,7 @@
 #include "functions.h"
 #include "DataClass.h"
 #include "TradePrice.h"
+#include "Kitmaker.h"
 using namespace std;
 
 int main(int argc, const char* argv[]) {
@@ -22,6 +23,8 @@ int main(int argc, const char* argv[]) {
 	Settings.AddAlias("trade", "TradePriceAlias");
 	Settings.AddAlias("tradeprice", "TradePriceAlias");
 
+	Settings.AddAlias("kitmaker", "KitMakerAlias");
+
 	if (argc <= 1) {
 		printf("usage: stmtool [ tradeprice | trp ] [ kitmaker | ktm ]\n\n");
 		printf("See \"stmtool [command] help\" for specific command help");
@@ -32,7 +35,7 @@ int main(int argc, const char* argv[]) {
 
 
 	const char* inputCommand = "tradeprice"; // = argv[1]
-	const char* parsedCommand = Settings.CheckAgainstAlias("tradeprice");
+	const char* parsedCommand = Settings.CheckAgainstAlias(inputCommand);
 	if (strcmp(parsedCommand, "none") == 0) {
 		//non existant command/command
 	}
@@ -40,7 +43,7 @@ int main(int argc, const char* argv[]) {
 		TradePrice();
 	}
 	else if (strcmp(parsedCommand, "KitMakerAlias") == 0) {
-
+		KitMaker();
 	}
 	else if (strcmp(parsedCommand, "SetKeyAlias") == 0) {
 

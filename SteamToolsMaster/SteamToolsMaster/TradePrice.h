@@ -18,39 +18,64 @@ void TradePrice() {
 	size_t Reclaimed = 0;
 	size_t Scrap = 0;
 	size_t Weapons = 0;
-	size_t total_value = 0;
 
-	size_t TEST_KeyPrice[4] = { 60,2,2,2 };
+	bool responseStatus = true;
+
+	size_t TEST_KeyPrice[4] = { 60,2,0,0 };
 
 	//Prompt 1: How many different items?
-	printf("How many different items?\n");
-	printf(">");
-	AmountOfDiffItems = AskForPositiveNumber(input, MAX_SIZE);
-	std::cout << AmountOfDiffItems << '\n';
+	printf("\nHow many different items? ");
+	responseStatus = AskForPositiveNumber(AmountOfDiffItems, input, MAX_SIZE);
+	if (!responseStatus) { 
+		std::cout << "Invalid Input. Closing...";
+	return; 
+	};
 
 	for (size_t i = 0; i < AmountOfDiffItems; i++) {
+		std::cout << "\n//// Item " << (i + 1) << " ////" << "\n";
 		//Prompt 2: How many of item [index]
-		printf("How many of item ");
-		printf(i + 1 + "?\n");
-		printf(">");
-		AmountOfItems = AskForPositiveNumber(input2, MAX_SIZE2);
+		std::cout << "How many items " << "? ";
+		responseStatus = AskForPositiveNumber(AmountOfItems, input2, MAX_SIZE2);
+		if (!responseStatus) { std::cout << "Invalid Input. Closing..."; return; };
 
 		//Prompt 3: How much keys?
-		Keys = AskForPositiveNumber(input, MAX_SIZE) * AmountOfItems;
+		std::cout << "How many keys " << "? ";
+		responseStatus = AskForPositiveNumber(Keys, input, MAX_SIZE);
+		if (!responseStatus) { std::cout << "Invalid Input. Closing..."; return; };
+		Keys *= AmountOfItems;
+
 		//Prompt 4: How much refined?
-		Refined = AskForPositiveNumber(input, MAX_SIZE) * AmountOfItems;
+		std::cout << "How many refined " << "? ";
+		responseStatus = AskForPositiveNumber(Refined, input, MAX_SIZE);
+		if (!responseStatus) { std::cout << "Invalid Input. Closing..."; return; };
+
 		//Prompt 5: How much reclaimed?
-		Reclaimed = AskForPositiveNumber(input, MAX_SIZE) * AmountOfItems;
+		std::cout << "How many reclaimed " << "? ";
+		responseStatus = AskForPositiveNumber(Reclaimed, input, MAX_SIZE);
+		if (!responseStatus) { std::cout << "Invalid Input. Closing..."; return; };
+
 		//Prompt 6: How much Scrap?
-		Scrap = AskForPositiveNumber(input, MAX_SIZE) * AmountOfItems;
+		std::cout << "How many scrap " << "? ";
+		responseStatus = AskForPositiveNumber(Scrap, input, MAX_SIZE);
+		if (!responseStatus) { std::cout << "Invalid Input. Closing..."; return; };
+
 		//Prompt 7 How many weapons?
-		Weapons = AskForPositiveNumber(input, MAX_SIZE) * AmountOfItems;
+		std::cout << "How many weapons " << "? ";
+		responseStatus = AskForPositiveNumber(Weapons, input, MAX_SIZE);
+		if (!responseStatus) { std::cout << "Invalid Input. Closing..."; return; };
 
-		total_value = Weapons + Scrap * 2 + Reclaimed * 6 + Refined * 18;
-		size_t KeyWeaponValue = ReturnKeyWeaponValue(TEST_KeyPrice, Keys);
-		MetalHelper(total_value, Keys, KeyWeaponValue);
-
-		std::cout << Keys, Refined, Reclaimed, Scrap, Weapons;
+		Weapons = (Weapons + Scrap * 2 + Reclaimed * 6 + Refined * 18) * AmountOfItems;
+		MetalHelper(Weapons, Keys, ReturnKeyWeaponValue(TEST_KeyPrice));
+		Scrap = 0;
+		Reclaimed = 0;
+		Refined = 0;
+		CleanValue(Refined, Reclaimed, Scrap, Weapons);
+		std::cout << "\n//// Total Item Cost ////\n";
+		std::cout << "Keys: " << Keys << '\n';
+		std::cout << "Refined: " << Refined << '\n';
+		std::cout << "Reclaimed: " << Reclaimed << '\n';
+		std::cout << "Scrap: " << Scrap << '\n';
+		std::cout << "Weapons: " << Weapons << '\n';
 
 		//Example Key Price
 		//size_t KeyPrice[4] = { 60,2,2,2 };
