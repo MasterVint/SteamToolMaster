@@ -29,7 +29,7 @@ void TradePrice() {
 	printf("\nHow many different items? ");
 	responseStatus = AskForPositiveNumber(AmountOfDiffItems, input, MAX_SIZE);
 	if (!responseStatus) { 
-		std::cout << "Invalid Input. Closing...";
+		std::cout << "Invalid Input";
 	return; 
 	};
 
@@ -46,33 +46,33 @@ void TradePrice() {
 		//Prompt 2: How many of item [index]
 		std::cout << "How many items " << "? ";
 		responseStatus = AskForPositiveNumber(AmountOfItems, input2, MAX_SIZE2);
-		if (!responseStatus) { std::cout << "Invalid Input. Closing..."; return; };
+		if (!responseStatus) { std::cout << "Invalid Input"; return; };
 
 		//Prompt 3: How much keys?
 		std::cout << "How many keys " << "? ";
 		responseStatus = AskForPositiveNumber(Keys, input, MAX_SIZE);
-		if (!responseStatus) { std::cout << "Invalid Input. Closing..."; return; };
+		if (!responseStatus) { std::cout << "Invalid Input"; return; };
 		Keys *= AmountOfItems;
 
 		//Prompt 4: How much refined?
 		std::cout << "How many refined " << "? ";
 		responseStatus = AskForPositiveNumber(Refined, input, MAX_SIZE);
-		if (!responseStatus) { std::cout << "Invalid Input. Closing..."; return; };
+		if (!responseStatus) { std::cout << "Invalid Input"; return; };
 
 		//Prompt 5: How much reclaimed?
 		std::cout << "How many reclaimed " << "? ";
 		responseStatus = AskForPositiveNumber(Reclaimed, input, MAX_SIZE);
-		if (!responseStatus) { std::cout << "Invalid Input. Closing..."; return; };
+		if (!responseStatus) { std::cout << "Invalid Input"; return; };
 
 		//Prompt 6: How much Scrap?
 		std::cout << "How many scrap " << "? ";
 		responseStatus = AskForPositiveNumber(Scrap, input, MAX_SIZE);
-		if (!responseStatus) { std::cout << "Invalid Input. Closing..."; return; };
+		if (!responseStatus) { std::cout << "Invalid Input"; return; };
 
 		//Prompt 7 How many weapons?
 		std::cout << "How many weapons " << "? ";
 		responseStatus = AskForPositiveNumber(Weapons, input, MAX_SIZE);
-		if (!responseStatus) { std::cout << "Invalid Input. Closing..."; return; };
+		if (!responseStatus) { std::cout << "Invalid Input"; return; };
 
 		Weapons += (Scrap * 2 + Reclaimed * 6 + Refined * 18) * AmountOfItems;
 		total_cost += Weapons + Keys * ReturnKeyWeaponValue(TEST_KeyPrice);

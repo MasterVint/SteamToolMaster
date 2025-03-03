@@ -29,14 +29,13 @@ int main(int argc, const char* argv[]) {
 
 
 	if (argc <= 1) {
-		printf("No command present.\n");
 		printf("usage: stmtool [ tradeprice | trp ] [ kitmaker | ktm ]\n\n");
 		printf("See \"stmtool [command] help\" for specific command help");
 		return 0;
 	}
 
 
-	const char* inputCommand = "tradeprice"; // = argv[1]
+	const char* inputCommand = argv[1]; // = argv[1]
 	const char* parsedCommand = Settings.CheckAgainstAlias(inputCommand);
 	if (strcmp(parsedCommand, "none") == 0) {
 		//non existant command/command
@@ -50,7 +49,6 @@ int main(int argc, const char* argv[]) {
 	else if (strcmp(parsedCommand, "SetKeyAlias") == 0) {
 
 	}
-	std::cout << "end" << "\n";
 	return 0;
 
 }
