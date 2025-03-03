@@ -16,3 +16,9 @@ A solution which provides various tools for items on steam built entirely on c++
 > On windows go unto "Environment Variables", find "System Variables" and find "PATH" and click "Edit" then "New" and enter your new folder's path and click "OK" on all windows.
 ### Enjoy!
 > You have now added SteamToolMaster to your computer! Type stmtool from any command prompt on your pc to use.
+```
+>stmtool
+usage: stmtool [ tradeprice | trade | trp]
+
+See "stmtool [command] help" for specific command help
+```
