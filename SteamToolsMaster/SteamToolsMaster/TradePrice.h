@@ -19,6 +19,8 @@ void TradePrice() {
 	size_t Scrap = 0;
 	size_t Weapons = 0;
 
+	size_t total_cost = 0;
+
 	bool responseStatus = true;
 
 	size_t TEST_KeyPrice[4] = { 60,2,0,0 };
@@ -32,6 +34,14 @@ void TradePrice() {
 	};
 
 	for (size_t i = 0; i < AmountOfDiffItems; i++) {
+		//Initialize values
+		Keys = 0;
+		Refined = 0;
+		Reclaimed = 0;
+		Scrap = 0;
+		Weapons = 0;
+		AmountOfItems = 0;
+
 		std::cout << "\n//// Item " << (i + 1) << " ////" << "\n";
 		//Prompt 2: How many of item [index]
 		std::cout << "How many items " << "? ";
@@ -64,23 +74,39 @@ void TradePrice() {
 		responseStatus = AskForPositiveNumber(Weapons, input, MAX_SIZE);
 		if (!responseStatus) { std::cout << "Invalid Input. Closing..."; return; };
 
-		Weapons = (Weapons + Scrap * 2 + Reclaimed * 6 + Refined * 18) * AmountOfItems;
+		Weapons += (Scrap * 2 + Reclaimed * 6 + Refined * 18) * AmountOfItems;
+		total_cost += Weapons + Keys * ReturnKeyWeaponValue(TEST_KeyPrice);
+		std::cout << Weapons << " : " << Keys << " : " << ReturnKeyWeaponValue(TEST_KeyPrice) << std::endl;
 		MetalHelper(Weapons, Keys, ReturnKeyWeaponValue(TEST_KeyPrice));
 		Scrap = 0;
 		Reclaimed = 0;
 		Refined = 0;
 		CleanValue(Refined, Reclaimed, Scrap, Weapons);
-		std::cout << "\n//// Total Item Cost ////\n";
-		std::cout << "Keys: " << Keys << '\n';
-		std::cout << "Refined: " << Refined << '\n';
-		std::cout << "Reclaimed: " << Reclaimed << '\n';
-		std::cout << "Scrap: " << Scrap << '\n';
-		std::cout << "Weapons: " << Weapons << '\n';
-
-		//Example Key Price
-		//size_t KeyPrice[4] = { 60,2,2,2 };
+		std::cout << "\n//// Item " << (i + 1) << " Cost ////\n";
+		if (Keys > 0) { std::cout << "Keys: " << Keys << '\n'; };
+		if (Refined > 0) { std::cout << "Refined: " << Refined << '\n'; };
+		if (Reclaimed > 0) { std::cout << "Reclaimed: " << Reclaimed << '\n'; };
+		if (Scrap > 0) { std::cout << "Scrap: " << Scrap << '\n'; };
+		if (Weapons > 0) { std::cout << "Weapons: " << Weapons << '\n'; };
 		
 	}
+	Keys = 0;
+	Refined = 0;
+	Reclaimed = 0;
+	Scrap = 0;
+	Weapons = 0;
+	MetalHelper(total_cost, Keys, ReturnKeyWeaponValue(TEST_KeyPrice));
+	CleanValue(Refined, Reclaimed, Scrap, total_cost);
+	Weapons = total_cost;
+	std::cout << "\n//// Total Cost ////\n";
+	if (Keys > 0) { std::cout << "Keys: " << Keys << '\n'; };
+	if (Refined > 0) { std::cout << "Refined: " << Refined << '\n'; };
+	if (Reclaimed > 0) { std::cout << "Reclaimed: " << Reclaimed << '\n'; };
+	if (Scrap > 0) { std::cout << "Scrap: " << Scrap << '\n'; };
+	if (Weapons > 0) { std::cout << "Weapons: " << Weapons << '\n'; };
+
+
+	//ru,tr,rd,tl
 	
 	//Prompt 1: How many different items?
 	//foreach (answer of previous prompt) {

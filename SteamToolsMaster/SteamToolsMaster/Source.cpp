@@ -7,6 +7,14 @@ using namespace std;
 
 int main(int argc, const char* argv[]) {
 	ToolSettings Settings;
+	//Todo: add parsing functionality to ToolSettings, use this in the meantime
+	Settings.AddAlias("trp", "TradePriceAlias");
+	Settings.AddAlias("trade", "TradePriceAlias");
+	Settings.AddAlias("tradeprice", "TradePriceAlias");
+
+	Settings.AddAlias("kitmaker", "KitMakerAlias");
+	Settings.AddAlias("kitmkr", "KitMakerAlias");
+	Settings.AddAlias("kit", "KitMakerAlias");
 
 	//Test
 	//argv[1] = "test";
@@ -19,19 +27,13 @@ int main(int argc, const char* argv[]) {
 	//}
 	//std::cout << "End of Test" << "\n";
 
-	Settings.AddAlias("trp", "TradePriceAlias");
-	Settings.AddAlias("trade", "TradePriceAlias");
-	Settings.AddAlias("tradeprice", "TradePriceAlias");
-
-	Settings.AddAlias("kitmaker", "KitMakerAlias");
 
 	if (argc <= 1) {
+		printf("No command present.\n");
 		printf("usage: stmtool [ tradeprice | trp ] [ kitmaker | ktm ]\n\n");
 		printf("See \"stmtool [command] help\" for specific command help");
-		//return 0;
+		return 0;
 	}
-	std::cout << "end" << "\n";
-	//Parse Settings.cfg
 
 
 	const char* inputCommand = "tradeprice"; // = argv[1]
@@ -46,23 +48,6 @@ int main(int argc, const char* argv[]) {
 		KitMaker();
 	}
 	else if (strcmp(parsedCommand, "SetKeyAlias") == 0) {
-
-	}
-	if (argc <= 1) {
-		return 0;
-	}
-	if (strcmp(argv[1], "tradeprice") == 0|| strcmp(argv[1], "trp") == 0) {
-		if (argc <= 3 && strcmp(argv[2], "help")) {
-			printf("// A script made to confirm the price of items when buying in bulk");
-
-			//howto guide since they asked for help
-		}
-		else {
-			
-			//how many different items are we buying?
-			//Price for this item?
-			//How many of this item?
-		}
 
 	}
 	std::cout << "end" << "\n";
