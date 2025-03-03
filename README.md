@@ -1,7 +1,7 @@
 # SteamToolMaster
 A solution which provides various tools for items on steam built entirely on c++, current features listed below
 ### TradePrice
->quickly calculate the total cost of multiple items denoted in keys and metal
+> Quickly calculate the total cost of multiple items denoted in keys and metal
 
 # Installation Guide
 ### Step 1
