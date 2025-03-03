@@ -48,7 +48,24 @@ public:
         delete[] old_array;
         return new_array;
     }
-
+    const char* CheckAgainstAlias(const char* value) {
+        for (size_t i = 0; i < TradePriceCount; i++) {
+            if (strcmp(value, TradePriceAlias[i]) == 0) {
+                return "TradePriceAlias";
+            }
+        }
+        for (size_t i = 0; i < KitMakerCount; i++) {
+            if (strcmp(value, KitMakerAlias[i]) == 0) {
+                return "KitMakerAlias";
+            }
+        }
+        for (size_t i = 0; i < SetKeyCount; i++) {
+            if (strcmp(value, SetKeyAlias[i]) == 0) {
+                return "SetKeyAlias";
+            }
+        }
+        return "none";
+    }
     void AddAlias(const char* new_value, const char* category) {
         size_t InputCount = 0;
         if (strcmp(category, "TradePriceAlias") == 0) {
