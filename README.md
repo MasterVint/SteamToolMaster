@@ -5,7 +5,7 @@ A solution which provides various tools for items on steam built entirely on c++
 
 # Installation Guide
 ### Step 1
-> Download the ZIP file from https://github.com/MasterVint/SteamToolMaster main branch
+> Download the ZIP file from the [main branch](https://github.com/MasterVint/SteamToolMaster)
 ### Step 2
 > Extract the ZIP to a desired folder
 ### Step 3
