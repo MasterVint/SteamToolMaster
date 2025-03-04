@@ -6,9 +6,6 @@ void TradePrice() {
 	const size_t MAX_SIZE = 100;
 	char input[MAX_SIZE];
 
-	const size_t MAX_SIZE2 = 100;
-	char input2[MAX_SIZE2];
-
 	//size_t numbersize = 0;
 	size_t AmountOfDiffItems = 0;
 	size_t AmountOfItems = 0;
@@ -45,7 +42,7 @@ void TradePrice() {
 		std::cout << "\n//// Item " << (i + 1) << " ////" << "\n";
 		//Prompt 2: How many of item [index]
 		std::cout << "How many items " << "? ";
-		responseStatus = AskForPositiveNumber(AmountOfItems, input2, MAX_SIZE2);
+		responseStatus = AskForPositiveNumber(AmountOfItems, input, MAX_SIZE);
 		if (!responseStatus) { std::cout << "Invalid Input"; return; };
 
 		//Prompt 3: How much keys?
@@ -107,15 +104,6 @@ void TradePrice() {
 
 
 	//ru,tr,rd,tl
-	
-	//Prompt 1: How many different items?
-	//foreach (answer of previous prompt) {
-	//Prompt 2: How many of item [index]
-	//Prompt 3: How much refined?
-	//Prompt 4: How much reclaimed?
-	//Prompt 5: How much Scrap?
-	//Prompt 6 How many weapons?
-	//}
 }
 
 //we might just have everything in the TradePrice() function

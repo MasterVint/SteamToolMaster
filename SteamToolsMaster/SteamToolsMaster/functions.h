@@ -64,14 +64,13 @@ bool AskForPositiveNumber(size_t &ReturnValue, char* input, const size_t &MAX_SI
 			if (i == 0) {
 				return false;
 			}
-			break; // /0 character, aka no more input
+			break; // index is a '/0' character, aka no more input
 		}
 		if (int(input[i]) >= 48 && int(input[i]) <= 57) {
 			//character is a number
 			numbersize++;
 		}
 		else {
-			//its not a number, this means that the input is invalid
 			numbersize = -1;
 			return false;
 			break;
@@ -80,9 +79,7 @@ bool AskForPositiveNumber(size_t &ReturnValue, char* input, const size_t &MAX_SI
 	}
 
 	for (size_t i = numbersize; i > 0; i--) {
-		//std::cout << "I: " << i << std::endl;
-		//2, 1
-		ReturnValue += CharToNumber(input[numbersize - i]) * intPow(10, i - 1);//std::pow(10, numbersize - 1);
+		ReturnValue += CharToNumber(input[numbersize - i]) * intPow(10, i - 1);
 	}
 	return true;
 }
