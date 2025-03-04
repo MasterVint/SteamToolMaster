@@ -7,6 +7,8 @@ using namespace std;
 
 int main(int argc, const char* argv[]) {
 	ToolSettings Settings;
+
+	Settings.ParseToolSettings();
 	//Todo: add parsing functionality to ToolSettings, use this in the meantime
 	Settings.AddAlias("trp", "TradePriceAlias");
 	Settings.AddAlias("trade", "TradePriceAlias");
@@ -27,12 +29,12 @@ int main(int argc, const char* argv[]) {
 	//}
 	//std::cout << "End of Test" << "\n";
 
-
 	if (argc <= 1) {
 		printf("usage: stmtool [ tradeprice | trp ] [ kitmaker | ktm ]\n\n");
 		printf("See \"stmtool [command] help\" for specific command help");
 		return 0;
 	}
+
 
 
 	const char* inputCommand = argv[1]; // = argv[1]
