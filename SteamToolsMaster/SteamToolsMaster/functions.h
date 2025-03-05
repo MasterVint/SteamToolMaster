@@ -53,6 +53,34 @@ size_t CharToNumber(char number) {
 	return 0;
 }
 
+size_t parsePositiveNumber(char* numberStr, const size_t strLen) {
+	size_t ReturnValue = 0;
+	size_t numbersize = 0;
+	for (size_t i = 0; i < strLen; i++) {
+		if (int(numberStr[i]) == 0) {
+			if (i == 0) {
+				return false;
+			}
+			break; // index is a '/0' character, aka no more input
+		}
+		if (int(numberStr[i]) >= 48 && int(numberStr[i]) <= 57) {
+			//character is a number
+			numbersize++;
+		}
+		else {
+			numbersize = -1;
+			return false;
+			break;
+		}
+		//std::cout << int(input[i]) << std::endl;
+	}
+
+	for (size_t i = numbersize; i > 0; i--) {
+		ReturnValue += CharToNumber(numberStr[numbersize - i]) * intPow(10, i - 1);
+	}
+	return ReturnValue;
+}
+
 bool AskForPositiveNumber(size_t &ReturnValue, char* input, const size_t &MAX_SIZE) {
 	size_t numbersize = 0;
 	std::cin.clear();

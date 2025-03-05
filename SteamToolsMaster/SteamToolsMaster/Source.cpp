@@ -9,6 +9,7 @@ int main(int argc, const char* argv[]) {
 	ToolSettings Settings;
 
 	Settings.ParseToolSettings();
+	Settings.SerializeToolSettings();
 	//Todo: add parsing functionality to ToolSettings, use this in the meantime
 	Settings.AddAlias("trp", "TradePriceAlias");
 	Settings.AddAlias("trade", "TradePriceAlias");
