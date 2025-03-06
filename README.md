@@ -18,7 +18,7 @@ cd /d "%~dp0"
 SteamToolMaster.exe %*
 ```
 ### Step 5
-> On windows go unto "Environment Variables", find "System Variables" and find "PATH" and click "Edit" then "New" and enter your new folder's path and click "OK" on all windows.
+> On windows go unto "Environment Variables", find "System Variables" and find "PATH" and click "Edit" then "New" and enter your new folder's path and click "OK" on all windows. This will allow windows to find your program from anywhere on your computer.
 ### Enjoy!
 > You have now added SteamToolMaster to your computer! Type stmtool from any command prompt on your pc to use!
 ```
