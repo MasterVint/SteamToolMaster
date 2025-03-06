@@ -44,7 +44,7 @@ int main(int argc, const char* argv[]) {
 	printf("parsedCommand: %s\n", parsedCommand);
 	#endif
 	if (strcmp(parsedCommand, "none") == 0) {
-		printf("No command or alias called \"%s\" exists.", parsedCommand);
+		printf("No command or alias called \"%s\" exists.", argv[1]);
 		//inputCommand is not an existant command
 	}
 	else if (strcmp(parsedCommand, "TradePriceAlias") == 0) {
