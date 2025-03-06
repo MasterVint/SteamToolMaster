@@ -32,6 +32,11 @@ public:
         return new_array;
     }
     const char* CheckAgainstAlias(const char* value) {
+        #ifdef _DEBUG
+            printf("TradePriceCount: %zu\n", TradePriceCount);
+            printf("KitMakerCount: %zu\n", KitMakerCount);
+            printf("SetKeyCount: %zu\n", SetKeyCount);
+        #endif
         for (size_t i = 0; i < TradePriceCount; i++) {
             if (strcmp(value, TradePriceAlias[i]) == 0) {
                 return "TradePriceAlias";
@@ -53,13 +58,12 @@ public:
         size_t InputCount = 0;
         if (strcmp(category, "TradePriceAlias") == 0) {
             InputCount = TradePriceCount + 1;
-            //we want to add a single item to TradePriceAlias
+            //we add a single item to TradePriceAlias
             if (InputCount > INITIAL_CAP) {
                 TradePriceAlias = resizeArray(TradePriceAlias, TradePriceCount, InputCount);
                 //this means that our array is too small for our new_value, thus we resize
             }
             TradePriceAlias[TradePriceCount] = _strdup(new_value);
-            //std::cout << "added_alias: " << TradePriceCount << '\n';
             TradePriceCount++;
         }
         else if (strcmp(category, "KitMakerAlias") == 0) {
@@ -100,8 +104,10 @@ public:
 
     //The most horrible filereader haha
     bool SerializeToolSettings() {
-       // std::cout << "[SerializeToolSettings] Start" << '\n';
-        //std::cout << "[SerializeToolSettings] TradePriceCount: " << TradePriceCount << '\n';
+        #ifdef _DEBUG
+        printf("[SerializeToolSettings] Start\n");
+        printf("[SerializeToolSettings] TradePriceCount: %zu\n", TradePriceCount);
+        #endif
         std::ofstream SettingsCFG("./Settings.cfg");
 
         SettingsCFG << "#This .cfg file is used to store data such as key price, aliases and relevant settings." << '\n';
@@ -110,14 +116,9 @@ public:
         SettingsCFG << "#keyprice,metal,refined,reclaimed,scrap,weapon" << '\n';
         SettingsCFG << "#keyprice,usd,price_in_cents ($1.70 == 170)" << '\n';
 
-        //Seperate commented block from aliases
-        SettingsCFG << '\n';
-
         //Write down aliases
         SettingsCFG << "\nalias,tradeprice";
-        //std::cout << "count from serialized: " << TradePriceCount << '\n';
         for (size_t i = 0; i < TradePriceCount; i++) {
-            //std::cout << "[SerializeToolSettings] Alias[" << i << "]: " << TradePriceAlias[i] << '\n';
             SettingsCFG << "," << TradePriceAlias[i];
         }
         SettingsCFG << "\nalias,kitmaker";
@@ -138,11 +139,16 @@ public:
         }
         SettingsCFG << "\nkeyprice,usd";
         SettingsCFG << ',' << USD_KeyPrice;
-       // std::cout << "[SerializeToolSettings] End" << '\n';
+        #ifdef _DEBUG
+                printf("[SerializeToolSettings] End\n");
+        #endif
         return true;
     }
     bool ParseToolSettings() {
-        //std::cout << "[ParseToolSettings] Start" << '\n';
+    #ifdef _DEBUG
+            printf("[ParseToolSettings] Start\n");
+            printf("[ParseToolSettings] TradePriceCount: %zu\n", TradePriceCount);
+    #endif
         char Line[100]; //hardcoded limits, nice
 
         const size_t match_size = 100;
@@ -168,25 +174,28 @@ public:
                         while (Line[needleIndex - 1] != '\0' && Line[needleIndex - 1] != '\n') {
                             ClearArray(match, match_size);
                             copyUntilComma(match, Line, needleIndex);
-                            //std::cout << "[ParseToolSettings] Adding alias: " << match << '\n';
+                            #ifdef _DEBUG
+                                printf("[ParseToolSettings] Adding TradePriceAlias: %s\n", match);
+                            #endif
                             AddAlias(match, "TradePriceAlias");
-                            //std::cout << "Added tradeprice alias: " << match << std::endl;
                         }
                     } else if (strcmp("kitmaker", match) == 0) {
                         while (Line[needleIndex - 1] != '\0' && Line[needleIndex - 1] != '\n') {
                             ClearArray(match, match_size);
                             copyUntilComma(match, Line, needleIndex);
-                           // std::cout << "[ParseToolSettings] Adding alias: " << match << '\n';
+                            #ifdef _DEBUG
+                                printf("[ParseToolSettings] Adding KitMakerAlias: %s\n", match);
+                            #endif
                             AddAlias(match, "KitMakerAlias");
-                            //std::cout << "Added kitmaker alias: " << match << std::endl;
                         }
                     } else if (strcmp("setkey", match) == 0) {
                         while (Line[needleIndex - 1] != '\0' && Line[needleIndex - 1] != '\n') {
                             ClearArray(match, match_size);
                             copyUntilComma(match, Line, needleIndex);
-                            //std::cout << "[ParseToolSettings] Adding alias: " << match << '\n';
+                            #ifdef _DEBUG
+                                printf("[ParseToolSettings] Adding SetKeyAlias: %s\n", match);
+                            #endif
                             AddAlias(match, "SetKeyAlias");
-                            //std::cout << "Added setkey alias: " << match << std::endl;
                         }
                     }
                 }
@@ -194,7 +203,6 @@ public:
                     ClearArray(match, match_size);
 
                     copyUntilComma(match, Line, needleIndex);
-                    //std::cout << match << std::endl;
                     if (strcmp("metal", match) == 0) {
                         size_t metalIndex = 0;
                         while(Line[needleIndex - 1] != '\0' && Line[needleIndex - 1] != '\n' && metalIndex < 4) {
@@ -202,16 +210,16 @@ public:
                             copyUntilComma(match, Line, needleIndex);
                             Metal_KeyPrice[metalIndex] = parsePositiveNumber(match, sizeof(match) / sizeof(match[0]));
                             CleanValue(Metal_KeyPrice[0], Metal_KeyPrice[1], Metal_KeyPrice[2], Metal_KeyPrice[3]);
-                            //std::cout << Metal_KeyPrice[0] << '\n';
                             metalIndex++;
-                           //std::cout <<  parsePositiveNumber(match, sizeof(match) / sizeof(match[0])) << '\n';
                         }
                     }
                     else if (strcmp("usd", match) == 0) {
                         ClearArray(match, match_size);
                         copyUntilComma(match, Line, needleIndex);
                         USD_KeyPrice = parsePositiveNumber(match, sizeof(match) / sizeof(match[0]));
-                        //std::cout <<  parsePositiveNumber(match, sizeof(match) / sizeof(match[0])) << '\n';
+                        #ifdef _DEBUG
+                        printf("[ParseToolSettings] USD_KeyPrice: %zu\n", USD_KeyPrice);
+                        #endif
                     }
                 }
                 //std::cout << "Processed Line: " << Line << '\n';
@@ -220,6 +228,9 @@ public:
         }
         //// Close the file
         SettingsCFG.close();
+        #ifdef _DEBUG
+                printf("[ParseToolSettings] End, TradePriceCount: %zu\n", TradePriceCount);
+        #endif
         //std::cout << "[ParseToolSettings] End, TradePriceCount = " << TradePriceCount << '\n';
         return true;
     }
