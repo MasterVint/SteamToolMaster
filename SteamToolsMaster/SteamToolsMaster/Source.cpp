@@ -19,10 +19,21 @@ int main(int argc, const char* argv[]) {
 	#ifdef _DEBUG
 		printf("[Main Parse End]\n");
 	#endif
-	////Check for memory leak with this
+	//char number[5] = { '1','7','8', '9', NULL};
+	//char number[4] = { '1','7','7', NULL };
+	//char number[3] = { '1','7', NULL };
+	////char number[2] = { '1', NULL };
+	//char* returned = InsertDecimalPoint(number);
+	//std::cout << '\n' << returned;
+	//Check for memory leak with this
+	//	size_t coolnumber = 0;
 	//for (size_t i = 0; i < 1000000000; i++) {
-	//	Settings.AddAlias("trp", "TradePriceAlias");
-	//	Settings.AddAlias("trade", "TradePriceAlias");
+	//	coolnumber++;
+	//	char* number = SerializePositiveNumber(coolnumber);
+	//	printf("number: %s\n", number);
+	//	delete number;
+	//	//printf("number: %s\n", number);
+	//	//Settings.AddAlias("trade", "TradePriceAlias");
 	//}
 	//std::cout << "End of Test" << "\n";
 

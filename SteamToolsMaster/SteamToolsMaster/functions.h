@@ -53,6 +53,65 @@ size_t CharToNumber(char number) {
 	return 0;
 }
 
+//lets practice using input 178 = 1.78
+// 1914 = 19.14
+char* InsertDecimalPoint(char* number) {
+	size_t length = 0; // this would become 3 for 178
+	while (number[length] != '\0') {
+		length++;
+	}
+
+	if (length == 0) {
+		printf("Error, string is empty, please open an issue or contact the developers if this was unintended.");
+		return number;
+	}
+	if (length > 1) {
+		char* Decimal = new char[length + 1];
+		for (size_t i = 0; i < length; i++) {
+			Decimal[i] = number[i];
+			std::cout << number[i];
+			if (i == length - 3 || (length <= 2 && i == 0)) {
+				Decimal[i + 1] = '.';
+				std::cout << '.';
+			}
+		}
+		return Decimal;
+	}
+	else {
+		char* Decimal = new char[length + 3];
+		Decimal[0] = '0';
+		Decimal[1] = '.';
+		Decimal[2] = '0';
+		Decimal[3] = number[0];
+		return Decimal;
+	}
+	return number;
+	
+}
+
+//Must use delete keyword on output to prevent a memory leak.
+char* SerializePositiveNumber(size_t& number) {
+	size_t temp = number;
+	size_t digitCount = 0;
+
+	do {
+		digitCount++;
+		temp /= 10;
+	} while (temp > 0);
+
+	char* serialized = new char[digitCount + 1];
+	serialized[digitCount] = '\0'; // Null-terminate the string
+
+	temp = number;
+	for (size_t i = digitCount; i > 0; i--) {
+		serialized[i - 1] = '0' + (temp % 10);
+		temp /= 10;
+	}
+
+	//serialized must later be deleted after usage.
+	return serialized;
+}
+
 size_t parsePositiveNumber(char* numberStr, const size_t strLen) {
 	size_t ReturnValue = 0;
 	size_t numbersize = 0;

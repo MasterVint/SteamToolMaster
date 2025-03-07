@@ -91,7 +91,7 @@ public:
         }
     }
     bool copyUntilComma(char* dest, const char* src, size_t &i) {
-        int is = i;
+        size_t is = i;
         while (src[i] != ',' && src[i] != '\0' && src[i] != '\n') {
             dest[i - is] = src[i];
            // std::cout << (i - is) << src[i] << std::endl;
@@ -100,6 +100,20 @@ public:
         dest[i - is] = '\0';
         i++;
         return true;
+    }
+
+    void PrintToolSettings() {
+        //Print all the aliases
+        for (size_t i = 0; i < TradePriceCount; i++) {
+            
+            printf(TradePriceAlias[i]);
+        }
+        for (size_t i = 0; i < KitMakerCount; i++) {
+            printf(TradePriceAlias[i]);
+        }
+        for (size_t i = 0; i < SetKeyCount; i++) {
+            printf(TradePriceAlias[i]);
+        }
     }
 
     //The most horrible filereader haha
