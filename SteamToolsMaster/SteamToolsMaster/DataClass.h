@@ -21,6 +21,16 @@ private:
     size_t SetKeyCount = 0;
 
     size_t INITIAL_CAP = 1;
+
+    size_t Unique_Killstreak_Item = 0;
+    size_t Unique_Specialized_Killstreak_Item = 0;
+    size_t Battle_Worn_Robot_KB_808 = 0;
+    size_t Battle_Worn_Robot_Taunt_Processor = 0;
+    size_t Battle_Worn_Robot_Money_Furnace = 0;
+    size_t Reinforced_Robot_Emotion_detector = 0;
+    size_t Reinforced_Robot_Humor_Supression_Pump = 0;
+    size_t Reinforced_Robot_Bomb_Stabilizer = 0;
+    size_t Pristine_Robot_Brainstorm_Bulb = 0;
 public:
     //This function is designed to only work when newsize is bigger than oldsize aka we make a bigger array than the input array.
     const char** resizeArray(const char** old_array, size_t& oldsize, size_t& newsize) {

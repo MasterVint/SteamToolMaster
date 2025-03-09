@@ -10,7 +10,7 @@ int main(int argc, const char* argv[]) {
 
 	#ifdef _DEBUG
 		argc++;
-		argv[1] = "trp";
+		argv[1] = "kitmaker";
 	#endif
 	#ifdef _DEBUG
 		printf("[Main Parse Start]\n");
@@ -19,23 +19,6 @@ int main(int argc, const char* argv[]) {
 	#ifdef _DEBUG
 		printf("[Main Parse End]\n");
 	#endif
-	//char number[5] = { '1','7','8', '9', NULL};
-	//char number[4] = { '1','7','7', NULL };
-	//char number[3] = { '1','7', NULL };
-	////char number[2] = { '1', NULL };
-	//char* returned = InsertDecimalPoint(number);
-	//std::cout << '\n' << returned;
-	//Check for memory leak with this
-	//	size_t coolnumber = 0;
-	//for (size_t i = 0; i < 1000000000; i++) {
-	//	coolnumber++;
-	//	char* number = SerializePositiveNumber(coolnumber);
-	//	printf("number: %s\n", number);
-	//	delete number;
-	//	//printf("number: %s\n", number);
-	//	//Settings.AddAlias("trade", "TradePriceAlias");
-	//}
-	//std::cout << "End of Test" << "\n";
 
 	if (argc <= 1) {
 		printf("usage: stmtool [ tradeprice | trp ] [ kitmaker | ktm ]\n\n");
@@ -71,7 +54,7 @@ int main(int argc, const char* argv[]) {
 		#ifdef _DEBUG
 				printf("[Main KitMaker() Start]\n");
 		#endif
-		KitMaker();
+		KitMaker(Settings);
 		#ifdef _DEBUG
 				printf("[Main KitMaker() End]\n");
 		#endif

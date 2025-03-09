@@ -1,7 +1,10 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 #include <iostream>
-
+#include <cstdlib>
+static bool openFile(const std::string& path) {
+	return system(("start " + path).c_str()) == 0;
+}
 size_t countArguments(const char* args[]) {
 	size_t count = 0;
 	while (args[count] != nullptr) {
