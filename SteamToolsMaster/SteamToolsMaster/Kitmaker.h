@@ -2,6 +2,7 @@
 #define KITMAKER_H
 #include <iostream>
 #include "functions.h"
+#include "DataClass.h"
 void KitMaker(ToolSettings &Settings) {
 
 	bool opened = openFile("./Kitmaker_input.txt");

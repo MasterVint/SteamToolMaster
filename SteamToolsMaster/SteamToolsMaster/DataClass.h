@@ -32,7 +32,11 @@ private:
     size_t Reinforced_Robot_Bomb_Stabilizer = 2;
     size_t Pristine_Robot_Brainstorm_Bulb = 50;
 public:
-
+    size_t* SetMetal_KeyPrice(size_t* NewKeyPrice) {
+        for (size_t i = 0; i < 4; i++) {
+            Metal_KeyPrice[i] = NewKeyPrice[i];
+        };
+    };
     size_t* GetMetal_KeyPrice() { return Metal_KeyPrice; };
     size_t GetUnique_Killstreak_Item() { return Unique_Killstreak_Item; };
     size_t GetUnique_Specialized_Killstreak_Item() { return Unique_Specialized_Killstreak_Item; };

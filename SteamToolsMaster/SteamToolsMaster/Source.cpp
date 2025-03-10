@@ -3,6 +3,7 @@
 #include "DataClass.h"
 #include "TradePrice.h"
 #include "Kitmaker.h"
+#include "SetKey.h"
 using namespace std;
 
 int main(int argc, const char* argv[]) {
@@ -45,7 +46,7 @@ int main(int argc, const char* argv[]) {
 		#ifdef _DEBUG
 				printf("[Main TradePrice() Start]\n");
 		#endif
-		TradePrice();
+		TradePrice(Settings);
 		#ifdef _DEBUG
 				printf("[Main TradePrice() End]\n");
 		#endif
@@ -60,7 +61,7 @@ int main(int argc, const char* argv[]) {
 		#endif
 	}
 	else if (strcmp(parsedCommand, "SetKeyAlias") == 0) {
-
+		SetKey(Settings);
 	}
 
 	//This is temporary, in reality this should only be called when we do a change.
