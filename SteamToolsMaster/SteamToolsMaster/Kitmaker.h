@@ -28,7 +28,7 @@ void KitMaker(ToolSettings &Settings) {
 		std::string item = lineSTR.substr(0, xIndex);
 		const char* ccstr = amount.c_str();
 		int int_amount = atoi(ccstr);
-		std::cout << amount << "\"" << std::endl;
+		//std::cout << amount << "\"" << std::endl;
 		if (item == "Unique Killstreak Item") {
 			total_weapons_price += Settings.GetUnique_Killstreak_Item() * int_amount;
 		}
@@ -61,7 +61,8 @@ void KitMaker(ToolSettings &Settings) {
 		#endif
 	}
 	size_t MetalKeyPrice = ReturnKeyWeaponValue(Settings.GetMetal_KeyPrice());
-	float value = round((float(total_weapons_price) / float(MetalKeyPrice)) * 100)/100;
+	float key_floatvalue = round((float(total_weapons_price) / float(MetalKeyPrice)) * 100)/100;
+	//float refined_floatvalue = round((float(total_weapons_price)/float(18)) * 100) / 100;
 	size_t keys = 0, refined = 0, reclaimed = 0, scrap = 0, weapons = 0;;
 	MetalHelper(total_weapons_price, keys, MetalKeyPrice);
 	CleanValue(refined, reclaimed, scrap, total_weapons_price);
@@ -72,12 +73,17 @@ void KitMaker(ToolSettings &Settings) {
 	printf("scrap: %zu\n", scrap);
 	printf("weapons: %zu\n", total_weapons_price);
 	
-	printf("Or %g keys\n", value);
+	printf("Or %g keys\n", key_floatvalue);
+	//printf("Or %g refined\n", refined_floatvalue);
 	kitmakerinput.close();
 
 	//Write File
 	std::ofstream kitmakeroutput("./Kitmaker_input.txt");
-	kitmakeroutput << "//Just copy and paste the input items from your kit's steam inventory page, example given below:\n";
+	kitmakeroutput << "//Replace this files contents with the input items from your kit's steam inventory page, example given below:\n";
+	kitmakeroutput << "Unique Specialized Killstreak Item x 2\n";
+	kitmakeroutput << "Battle-Worn Robot KB-808 x 13\n";
+	kitmakeroutput << "Battle-Worn Robot Taunt Processor x 3\n";
+	kitmakeroutput << "Reinforced Robot Emotion Detector x 3\n";
 	kitmakeroutput.close();
 
 	

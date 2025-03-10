@@ -22,7 +22,7 @@ private:
 
     size_t INITIAL_CAP = 1;
 
-    size_t Unique_Killstreak_Item = 288;
+    size_t Unique_Killstreak_Item = 292;
     size_t Unique_Specialized_Killstreak_Item = 900;
     size_t Battle_Worn_Robot_KB_808 = 20;
     size_t Battle_Worn_Robot_Taunt_Processor = 20;
