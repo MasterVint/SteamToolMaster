@@ -11,7 +11,7 @@ int main(int argc, const char* argv[]) {
 
 	#ifdef _DEBUG
 		argc++;
-		argv[1] = "kitmaker";
+		argv[1] = "key";
 	#endif
 	#ifdef _DEBUG
 		printf("[Main Parse Start]\n");

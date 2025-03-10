@@ -114,7 +114,36 @@ char* SerializePositiveNumber(size_t& number) {
 	//serialized must later be deleted after usage.
 	return serialized;
 }
+size_t parsePositiveNumber(char* numberStr, const size_t strLen, size_t start, size_t end) {
+	size_t ReturnValue = 0;
+	size_t numbersize = 0;
+	for (size_t i = start; i < end; i++) {
+		if (int(numberStr[i]) == 0) {
+			if (i == 0) {
+				return false;
+			}
+			break; // index is a '/0' character, aka no more input
+		}
+		if (int(numberStr[i]) >= 48 && int(numberStr[i]) <= 57) {
+			//character is a number
+			numbersize++;
+		}
+		else {
+			std::cout << "false!\n";
+			numbersize = -1;
+			return false;
+			break;
+		}
+		//std::cout << "numberstr: " << numberStr[i] << std::endl;
+	}
 
+	for (size_t i = numbersize; i > 0; i--) {
+		//std::cout << numberStr[numbersize - i + start] << '\n';
+		ReturnValue += CharToNumber(numberStr[numbersize - i + start]) * intPow(10, i - 1);
+	}
+	//std::cout << "retval: " << ReturnValue << '\n';
+	return ReturnValue;
+}
 size_t parsePositiveNumber(char* numberStr, const size_t strLen) {
 	size_t ReturnValue = 0;
 	size_t numbersize = 0;

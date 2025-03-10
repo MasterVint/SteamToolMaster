@@ -32,7 +32,7 @@ private:
     size_t Reinforced_Robot_Bomb_Stabilizer = 2;
     size_t Pristine_Robot_Brainstorm_Bulb = 50;
 public:
-    size_t* SetMetal_KeyPrice(size_t* NewKeyPrice) {
+    void SetMetal_KeyPrice(size_t* NewKeyPrice) {
         for (size_t i = 0; i < 4; i++) {
             Metal_KeyPrice[i] = NewKeyPrice[i];
         };
