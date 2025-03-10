@@ -2,7 +2,7 @@
 A solution which provides various tools for items on steam built entirely on c++, current features listed below
 ### TradePrice
 > Calculate the total cost of multiple items denoted in keys and metal
-### KitMaker (unfinished)
+### KitMaker
 > Calculate the price of turning a Professional/Specialized killstreak fabricator into a kit
 
 # Installation Guide
