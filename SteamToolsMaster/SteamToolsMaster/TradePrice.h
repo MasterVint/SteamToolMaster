@@ -2,7 +2,8 @@
 #define TRADEPRICE_H
 #include <iostream>
 #include "functions.h"
-void TradePrice() {
+#include "DataClass.h"
+void TradePrice(ToolSettings& Settings) {
 	const size_t MAX_SIZE = 100;
 	char input[MAX_SIZE];
 
@@ -20,7 +21,7 @@ void TradePrice() {
 
 	bool responseStatus = true;
 
-	size_t TEST_KeyPrice[4] = { 60,2,0,0 };
+	//size_t TEST_KeyPrice[4] = { 60,2,0,0 };
 
 	//Prompt 1: How many different items?
 	printf("\nHow many different items? ");
@@ -72,9 +73,9 @@ void TradePrice() {
 		if (!responseStatus) { std::cout << "Invalid Input"; return; };
 
 		Weapons += (Scrap * 2 + Reclaimed * 6 + Refined * 18) * AmountOfItems;
-		total_cost += Weapons + Keys * ReturnKeyWeaponValue(TEST_KeyPrice);
-		std::cout << Weapons << " : " << Keys << " : " << ReturnKeyWeaponValue(TEST_KeyPrice) << std::endl;
-		MetalHelper(Weapons, Keys, ReturnKeyWeaponValue(TEST_KeyPrice));
+		total_cost += Weapons + Keys * ReturnKeyWeaponValue(Settings.GetMetal_KeyPrice());
+		std::cout << Weapons << " : " << Keys << " : " << ReturnKeyWeaponValue(Settings.GetMetal_KeyPrice()) << std::endl;
+		MetalHelper(Weapons, Keys, ReturnKeyWeaponValue(Settings.GetMetal_KeyPrice()));
 		Scrap = 0;
 		Reclaimed = 0;
 		Refined = 0;
@@ -92,7 +93,7 @@ void TradePrice() {
 	Reclaimed = 0;
 	Scrap = 0;
 	Weapons = 0;
-	MetalHelper(total_cost, Keys, ReturnKeyWeaponValue(TEST_KeyPrice));
+	MetalHelper(total_cost, Keys, ReturnKeyWeaponValue(Settings.GetMetal_KeyPrice()));
 	CleanValue(Refined, Reclaimed, Scrap, total_cost);
 	Weapons = total_cost;
 	std::cout << "\n//// Total Cost ////\n";
