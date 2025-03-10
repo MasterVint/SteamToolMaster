@@ -22,16 +22,27 @@ private:
 
     size_t INITIAL_CAP = 1;
 
-    size_t Unique_Killstreak_Item = 0;
-    size_t Unique_Specialized_Killstreak_Item = 0;
-    size_t Battle_Worn_Robot_KB_808 = 0;
-    size_t Battle_Worn_Robot_Taunt_Processor = 0;
-    size_t Battle_Worn_Robot_Money_Furnace = 0;
-    size_t Reinforced_Robot_Emotion_detector = 0;
-    size_t Reinforced_Robot_Humor_Supression_Pump = 0;
-    size_t Reinforced_Robot_Bomb_Stabilizer = 0;
-    size_t Pristine_Robot_Brainstorm_Bulb = 0;
+    size_t Unique_Killstreak_Item = 288;
+    size_t Unique_Specialized_Killstreak_Item = 900;
+    size_t Battle_Worn_Robot_KB_808 = 20;
+    size_t Battle_Worn_Robot_Taunt_Processor = 20;
+    size_t Battle_Worn_Robot_Money_Furnace = 20;
+    size_t Reinforced_Robot_Emotion_detector = 2;
+    size_t Reinforced_Robot_Humor_Supression_Pump = 2;
+    size_t Reinforced_Robot_Bomb_Stabilizer = 2;
+    size_t Pristine_Robot_Brainstorm_Bulb = 50;
 public:
+
+    size_t* GetMetal_KeyPrice() { return Metal_KeyPrice; };
+    size_t GetUnique_Killstreak_Item() { return Unique_Killstreak_Item; };
+    size_t GetUnique_Specialized_Killstreak_Item() { return Unique_Specialized_Killstreak_Item; };
+    size_t GetBattle_Worn_Robot_KB_808() { return Battle_Worn_Robot_KB_808; };
+    size_t GetBattle_Worn_Robot_Taunt_Processor() { return Battle_Worn_Robot_Taunt_Processor; };
+    size_t GetBattle_Worn_Robot_Money_Furnace() { return Battle_Worn_Robot_Money_Furnace; };
+    size_t GetReinforced_Robot_Emotion_detector() { return Reinforced_Robot_Emotion_detector; };
+    size_t GetReinforced_Robot_Humor_Supression_Pump() { return Reinforced_Robot_Humor_Supression_Pump; };
+    size_t GetReinforced_Robot_Bomb_Stabilizer() { return Reinforced_Robot_Bomb_Stabilizer; };
+    size_t GetPristine_Robot_Brainstorm_Bulb() { return Pristine_Robot_Brainstorm_Bulb; };
     //This function is designed to only work when newsize is bigger than oldsize aka we make a bigger array than the input array.
     const char** resizeArray(const char** old_array, size_t& oldsize, size_t& newsize) {
         const char** new_array = new const char* [newsize];
