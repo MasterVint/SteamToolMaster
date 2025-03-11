@@ -3,6 +3,15 @@
 #include <iostream>
 #include "functions.h"
 #include "DataClass.h"
+
+//std::cout << "How many items " << "? ";
+//responseStatus = AskForPositiveNumber(AmountOfItems, input, MAX_SIZE);
+//if (!responseStatus) { std::cout << "Invalid Input"; return; };
+
+bool PromptItemCount(const char* messageItem, size_t& returnValue, char* input, const size_t& MAX_SIZE) {
+	printf("How many %s ? ", messageItem);
+	return AskForPositiveNumber(returnValue, input, MAX_SIZE);
+}
 void TradePrice(ToolSettings& Settings) {
 	debugPrintf("[TradePrice Start]\n");
 	const size_t MAX_SIZE = 100;
@@ -22,7 +31,6 @@ void TradePrice(ToolSettings& Settings) {
 
 	bool responseStatus = true;
 
-	//size_t TEST_KeyPrice[4] = { 60,2,0,0 };
 
 	//Prompt 1: How many different items?
 	printf("\nHow many different items? ");
@@ -32,7 +40,7 @@ void TradePrice(ToolSettings& Settings) {
 	return; 
 	};
 
-	for (size_t i = 0; i < AmountOfDiffItems; i++) {
+	for (size_t i = 1; i <= AmountOfDiffItems; i++) {
 		//Initialize values
 		Keys = 0;
 		Refined = 0;
@@ -41,38 +49,21 @@ void TradePrice(ToolSettings& Settings) {
 		Weapons = 0;
 		AmountOfItems = 0;
 
-		std::cout << "\n//// Item " << (i + 1) << " ////" << "\n";
-		//Prompt 2: How many of item [index]
-		std::cout << "How many items " << "? ";
-		responseStatus = AskForPositiveNumber(AmountOfItems, input, MAX_SIZE);
-		if (!responseStatus) { std::cout << "Invalid Input"; return; };
+		std::cout << "\n//// Item " << i << " ////" << "\n";
+		//Test Prompt
 
-		//Prompt 3: How much keys?
-		std::cout << "How many keys " << "? ";
-		responseStatus = AskForPositiveNumber(Keys, input, MAX_SIZE);
-		if (!responseStatus) { std::cout << "Invalid Input"; return; };
+		//Prompt 2: How many of item [index]
+		if (!PromptItemCount("items", AmountOfItems, input, MAX_SIZE)) { std::cout << "Invalid Input"; return; };
+
+		//Ask for item [index] price
+		if (!PromptItemCount("keys", Keys, input, MAX_SIZE)) { std::cout << "Invalid Input"; return; };
+		if (!PromptItemCount("refined", Refined, input, MAX_SIZE)) { std::cout << "Invalid Input"; return; };
+		if (!PromptItemCount("reclaimed", Reclaimed, input, MAX_SIZE)) { std::cout << "Invalid Input"; return; };
+		if (!PromptItemCount("scrap", Scrap, input, MAX_SIZE)) { std::cout << "Invalid Input"; return; };
+		if (!PromptItemCount("weapons", Weapons, input, MAX_SIZE)) { std::cout << "Invalid Input"; return; };
 		Keys *= AmountOfItems;
 
-		//Prompt 4: How much refined?
-		std::cout << "How many refined " << "? ";
-		responseStatus = AskForPositiveNumber(Refined, input, MAX_SIZE);
-		if (!responseStatus) { std::cout << "Invalid Input"; return; };
-
-		//Prompt 5: How much reclaimed?
-		std::cout << "How many reclaimed " << "? ";
-		responseStatus = AskForPositiveNumber(Reclaimed, input, MAX_SIZE);
-		if (!responseStatus) { std::cout << "Invalid Input"; return; };
-
-		//Prompt 6: How much Scrap?
-		std::cout << "How many scrap " << "? ";
-		responseStatus = AskForPositiveNumber(Scrap, input, MAX_SIZE);
-		if (!responseStatus) { std::cout << "Invalid Input"; return; };
-
-		//Prompt 7 How many weapons?
-		std::cout << "How many weapons " << "? ";
-		responseStatus = AskForPositiveNumber(Weapons, input, MAX_SIZE);
-		if (!responseStatus) { std::cout << "Invalid Input"; return; };
-
+		//This is really confusing
 		Weapons += (Scrap * 2 + Reclaimed * 6 + Refined * 18) * AmountOfItems;
 		total_cost += Weapons + Keys * ReturnKeyWeaponValue(Settings.GetMetal_KeyPrice());
 		std::cout << Weapons << " : " << Keys << " : " << ReturnKeyWeaponValue(Settings.GetMetal_KeyPrice()) << std::endl;
@@ -81,7 +72,7 @@ void TradePrice(ToolSettings& Settings) {
 		Reclaimed = 0;
 		Refined = 0;
 		CleanValue(Refined, Reclaimed, Scrap, Weapons);
-		std::cout << "\n//// Item " << (i + 1) << " Cost ////\n";
+		std::cout << "\n//// Item " << i << " Cost ////\n";
 		if (Keys > 0) { std::cout << "Keys: " << Keys << '\n'; };
 		if (Refined > 0) { std::cout << "Refined: " << Refined << '\n'; };
 		if (Reclaimed > 0) { std::cout << "Reclaimed: " << Reclaimed << '\n'; };

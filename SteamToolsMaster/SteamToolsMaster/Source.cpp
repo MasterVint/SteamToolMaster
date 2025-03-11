@@ -10,7 +10,7 @@ int main(int argc, const char* argv[]) {
 
 #ifdef _DEBUG
 	argc++;
-	argv[1] = "key";
+	argv[1] = "trp";
 #endif
 	ToolSettings Settings;
 	Settings.ParseToolSettings();
