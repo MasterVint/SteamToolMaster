@@ -15,8 +15,7 @@ void KitMaker(ToolSettings &Settings) {
 		return;
 	}
 	//Wait for user to press any button
-	char input[1];
-	std::cin.get(input, 1);
+	std::cin.get();
 
 	//Read File
 	std::ifstream kitmakerinput("./Kitmaker_input.txt");
@@ -24,37 +23,34 @@ void KitMaker(ToolSettings &Settings) {
 	size_t total_weapons_price = 0;
 	while (kitmakerinput.getline(line, sizeof(line))) {
 		std::string lineSTR = line;
-		size_t xIndex = lineSTR.find(" x ");
-		std::string amount = lineSTR.substr(xIndex + 3, sizeof(lineSTR) - xIndex);
-		std::string item = lineSTR.substr(0, xIndex);
-		const char* ccstr = amount.c_str();
-		int int_amount = atoi(ccstr);
-		//std::cout << amount << "\"" << std::endl;
-		if (item == "Unique Killstreak Item") {
+		size_t LocationOfx = lineSTR.find(" x ");
+		std::string ItemName = lineSTR.substr(0, LocationOfx);
+		int int_amount = atoi((lineSTR.substr(LocationOfx + 3, sizeof(lineSTR) - LocationOfx)).c_str());
+		if (ItemName == "Unique Killstreak Item") {
 			total_weapons_price += Settings.GetUnique_Killstreak_Item() * int_amount;
 		}
-		else if (item == "Unique Specialized Killstreak Item") {
+		else if (ItemName == "Unique Specialized Killstreak Item") {
 			total_weapons_price += Settings.GetUnique_Specialized_Killstreak_Item() * int_amount;
 		}
-		else if (item == "Battle-Worn Robot KB-808") {
+		else if (ItemName == "Battle-Worn Robot KB-808") {
 			total_weapons_price += Settings.GetBattle_Worn_Robot_KB_808() * int_amount;
 		}
-		else if (item == "Battle-Worn Robot Taunt Processor") {
+		else if (ItemName == "Battle-Worn Robot Taunt Processor") {
 			total_weapons_price += Settings.GetBattle_Worn_Robot_Taunt_Processor() * int_amount;
 		}
-		else if (item == "Battle-Worn Robot Money Furnace") {
+		else if (ItemName == "Battle-Worn Robot Money Furnace") {
 			total_weapons_price += Settings.GetBattle_Worn_Robot_Money_Furnace() * int_amount;
 		}
-		else if (item == "Reinforced Robot Emotion Detector") {
+		else if (ItemName == "Reinforced Robot Emotion Detector") {
 			total_weapons_price += Settings.GetReinforced_Robot_Emotion_detector() * int_amount;
 		}
-		else if (item == "Reinforced Robot Humor Suppression Pump") {
+		else if (ItemName == "Reinforced Robot Humor Suppression Pump") {
 			total_weapons_price += Settings.GetReinforced_Robot_Humor_Supression_Pump() * int_amount;
 		}
-		else if (item == "Reinforced Robot Bomb Stabilizer") {
+		else if (ItemName == "Reinforced Robot Bomb Stabilizer") {
 			total_weapons_price += Settings.GetReinforced_Robot_Bomb_Stabilizer() * int_amount;
 		}
-		else if (item == "Pristine Robot Brainstorm Bulb") {
+		else if (ItemName == "Pristine Robot Brainstorm Bulb") {
 			total_weapons_price += Settings.GetPristine_Robot_Brainstorm_Bulb() * int_amount;
 		}
 		#ifdef _DEBUG
