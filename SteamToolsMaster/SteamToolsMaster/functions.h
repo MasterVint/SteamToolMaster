@@ -238,4 +238,11 @@ void CleanValue(size_t &refined, size_t &reclaimed, size_t &scrap, size_t &weapo
 	MetalHelper(scrap, reclaimed, 3);
 	MetalHelper(reclaimed, refined, 3);
 }
+
+void CleanValue(size_t &key_price, size_t &keys, size_t& refined, size_t& reclaimed, size_t& scrap, size_t& weapons) {
+	MetalHelper(weapons, keys, key_price);
+	MetalHelper(weapons, scrap, 2);
+	MetalHelper(scrap, reclaimed, 3);
+	MetalHelper(reclaimed, refined, 3);
+}
 #endif
