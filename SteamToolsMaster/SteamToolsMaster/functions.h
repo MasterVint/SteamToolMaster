@@ -5,6 +5,12 @@
 static bool openFile(const std::string& path) {
 	return system(("start " + path).c_str()) == 0;
 }
+
+void debugPrintf(const char* message) {
+#ifdef _DEBUG
+	printf(message);
+#endif
+}
 size_t countArguments(const char* args[]) {
 	size_t count = 0;
 	while (args[count] != nullptr) {

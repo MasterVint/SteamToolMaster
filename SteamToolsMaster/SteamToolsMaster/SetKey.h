@@ -4,6 +4,7 @@
 #include "functions.h"
 #include "DataClass.h"
 void SetKey(ToolSettings &Settings) {
+	debugPrintf("[SetKey Start]\n");
 	const size_t MAX_SIZE = 50;
 	char input[MAX_SIZE];
 	printf("set key: ");
@@ -17,10 +18,9 @@ void SetKey(ToolSettings &Settings) {
 	for (size_t i = 0; i < MAX_SIZE; i++) {
 		char &indexchar = input[i];
 		if (indexchar == NULL) {
-			printf("here\n");
 			if (metal_type_index < 4) {
 				KeyPrice[metal_type_index] = parsePositiveNumber(input, MAX_SIZE, last_comma_index, i);
-				printf("Metal %zu: %zu\n", (size_t)metal_type_index, (size_t)KeyPrice[metal_type_index]);
+				//printf("Metal %zu: %zu\n", (size_t)metal_type_index, (size_t)KeyPrice[metal_type_index]);
 			}
 			break;
 		}
@@ -33,7 +33,7 @@ void SetKey(ToolSettings &Settings) {
 				return;
 			}
 			KeyPrice[metal_type_index] = parsePositiveNumber(input, MAX_SIZE, last_comma_index, i);
-			printf("Metal %zu: %zu\n", (size_t)metal_type_index, (size_t)KeyPrice[metal_type_index]);
+			//printf("Metal %zu: %zu\n", (size_t)metal_type_index, (size_t)KeyPrice[metal_type_index]);
 			last_comma_index = i + 1;
 			metal_type_index++;
 			

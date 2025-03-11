@@ -4,7 +4,7 @@
 #include "functions.h"
 #include "DataClass.h"
 void KitMaker(ToolSettings &Settings) {
-
+	debugPrintf("[Kitmaker Start]\n");
 	bool opened = openFile("./Kitmaker_input.txt");
 	if (opened) {
 		printf("Enter the fabricator inputs in the file, example provided.\n");

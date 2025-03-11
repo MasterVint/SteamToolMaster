@@ -57,6 +57,7 @@ public:
         return new_array;
     }
     const char* CheckAgainstAlias(const char* value) {
+        debugPrintf("[CheckAgainstAlias Start]");
         #ifdef _DEBUG
             printf("TradePriceCount: %zu\n", TradePriceCount);
             printf("KitMakerCount: %zu\n", KitMakerCount);
@@ -77,6 +78,7 @@ public:
                 return "SetKeyAlias";
             }
         }
+        debugPrintf("[CheckAgainstAlias End]");
         return "none";
     }
     void AddAlias(const char* new_value, const char* category) {

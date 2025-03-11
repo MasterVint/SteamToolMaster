@@ -4,6 +4,7 @@
 #include "functions.h"
 #include "DataClass.h"
 void TradePrice(ToolSettings& Settings) {
+	debugPrintf("[TradePrice Start]\n");
 	const size_t MAX_SIZE = 100;
 	char input[MAX_SIZE];
 
