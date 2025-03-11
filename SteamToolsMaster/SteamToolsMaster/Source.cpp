@@ -26,7 +26,6 @@ int main(int argc, const char* argv[]) {
 		printf("parsedCommand: %s\n", parsedCommand);
 	#endif
 
-	//Based on input command, execute related function
 	if (strcmp(parsedCommand, "none") == 0) {
 		printf("No command or alias called \"%s\" exists.", argv[1]);
 	}
