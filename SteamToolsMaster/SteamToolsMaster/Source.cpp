@@ -17,7 +17,7 @@ int main(int argc, const char* argv[]) {
 
 	if (argc <= 1) {
 		printf("usage: stmtool [ tradeprice | trp ] [ kitmaker | ktm ] [ setkey | key ]\n\n");
-		printf("See \"stmtool [command] help\" for specific command help");
+		//printf("See \"stmtool [command] help\" for specific command help");
 		return 0;
 	}
 	const char* parsedCommand = Settings.CheckAgainstAlias(argv[1]);
@@ -38,12 +38,9 @@ int main(int argc, const char* argv[]) {
 	else if (strcmp(parsedCommand, "SetKeyAlias") == 0) {
 		SetKey(Settings);
 	}
-	else if (strcmp(parsedCommand, "AddAlias") == 0) {
-
-	}
 
 	//This is temporary, in reality this should only be called when we do a change.
-	Settings.SerializeToolSettings();
+	//Settings.SerializeToolSettings();
 	return 0;
 
 }

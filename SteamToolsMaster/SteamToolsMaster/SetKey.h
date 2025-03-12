@@ -27,9 +27,9 @@ void SetKey(ToolSettings &Settings) {
 		
 		if (indexchar == ',') {
 			if (metal_type_index == 4) {
-				printf("Too many metals! The extra ones were ignored! Please follow the follow either of these formats:\n");
+				printf("Too many metals! The extra ones were ignored! Please follow the follow this format:\n");
 				printf("60,1,1,1 (Refined, Reclaimed, Scrap, Weapon)\n");
-				printf("60.33 (decimal of Refined, this would be 60 refined and 1 reclaimed)\n");
+				//printf("60.33 (decimal of Refined, this would be 60 refined and 1 reclaimed)\n");
 				return;
 			}
 			KeyPrice[metal_type_index] = parsePositiveNumber(input, MAX_SIZE, last_comma_index, i);
@@ -50,9 +50,14 @@ void SetKey(ToolSettings &Settings) {
 		}
 
 	}
-	Settings.SetMetal_KeyPrice(KeyPrice);
-	Settings.SerializeToolSettings();
-	printf("Key metal price set to %zu,%zu,%zu,%zu\n", KeyPrice[0], KeyPrice[1], KeyPrice[2], KeyPrice[3]);
+	if (KeyPrice[0] != 0) {
+		Settings.SetMetal_KeyPrice(KeyPrice);
+		Settings.SerializeToolSettings();
+		printf("Key metal price set to %zu,%zu,%zu,%zu\n", KeyPrice[0], KeyPrice[1], KeyPrice[2], KeyPrice[3]);
+	}
+	else {
+
+	}
 
 	//different inputs
 	// 60.33 (aka 60 refined, 1 reclaimed)
