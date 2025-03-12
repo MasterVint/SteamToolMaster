@@ -64,11 +64,11 @@ void KitMaker(ToolSettings &Settings) {
 	MetalHelper(total_weapons_price, keys, MetalKeyPrice);
 	CleanValue(refined, reclaimed, scrap, total_weapons_price);
 	printf("//// Total Crafting Cost ////\n");
-	printf("keys: %zu\n", keys);
-	printf("refined: %zu\n", refined);
-	printf("reclaimed: %zu\n", reclaimed);
-	printf("scrap: %zu\n", scrap);
-	printf("weapons: %zu\n", total_weapons_price);
+	if (keys > 0) { printf("keys: %zu\n", keys); };
+	if (refined > 0) { printf("refined: %zu\n", refined); };
+	if (reclaimed > 0) { printf("reclaimed: %zu\n", reclaimed); };
+	if (scrap > 0) { printf("scrap: %zu\n", scrap); };
+	if (total_weapons_price > 0) { printf("weapons: %zu\n", total_weapons_price); };
 	
 	printf("Or %g keys\n", key_floatvalue);
 	//printf("Or %g refined\n", refined_floatvalue);

@@ -231,14 +231,15 @@ void MetalHelper(size_t &CheckAgainst, size_t &Increasing, size_t denomination) 
 	}
 }
 
-//a function to return everything to proper denominations
+//a function to return everything in proper denominations
 //Example: if you have 4 scrap metal, we can convert 3 of those into 1 reclaimed metal since 3 scrap = 1 reclaimed, giving us an end value of 1 reclaimed + 1 scrap
 void CleanValue(size_t &refined, size_t &reclaimed, size_t &scrap, size_t &weapons) {
 	MetalHelper(weapons, scrap, 2);
 	MetalHelper(scrap, reclaimed, 3);
 	MetalHelper(reclaimed, refined, 3);
 }
-
+//a function to return everything in proper denominations
+//Example: if you have 4 scrap metal, we can convert 3 of those into 1 reclaimed metal since 3 scrap = 1 reclaimed, giving us an end value of 1 reclaimed + 1 scrap
 void CleanValue(size_t &key_price, size_t &keys, size_t& refined, size_t& reclaimed, size_t& scrap, size_t& weapons) {
 	MetalHelper(weapons, keys, key_price);
 	MetalHelper(weapons, scrap, 2);

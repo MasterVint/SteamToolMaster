@@ -38,6 +38,9 @@ int main(int argc, const char* argv[]) {
 	else if (strcmp(parsedCommand, "SetKeyAlias") == 0) {
 		SetKey(Settings);
 	}
+	else if (strcmp(parsedCommand, "AddAlias") == 0) {
+
+	}
 
 	//This is temporary, in reality this should only be called when we do a change.
 	Settings.SerializeToolSettings();
