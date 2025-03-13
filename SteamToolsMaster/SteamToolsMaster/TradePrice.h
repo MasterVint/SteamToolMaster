@@ -4,10 +4,6 @@
 #include "functions.h"
 #include "DataClass.h"
 
-//std::cout << "How many items " << "? ";
-//responseStatus = AskForPositiveNumber(AmountOfItems, input, MAX_SIZE);
-//if (!responseStatus) { std::cout << "Invalid Input"; return; };
-
 bool PromptItemCount(const char* messageItem, size_t& returnValue, char* input, const size_t& MAX_SIZE) {
 	printf("How many %s ? ", messageItem);
 	return AskForPositiveNumber(returnValue, input, MAX_SIZE);
