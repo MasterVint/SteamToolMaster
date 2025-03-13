@@ -7,8 +7,8 @@ private:
     const char* AliasName;
     std::vector<const char*> Aliases;
     void (*func)(ToolSettings&, int&, const char* []);
-    //char* (*parser)();
-    //void (*serializer)();
+
+    //Maybe add Parser and Serializer Here
 
 public:
     const char* GetAliasName() const {return AliasName;}

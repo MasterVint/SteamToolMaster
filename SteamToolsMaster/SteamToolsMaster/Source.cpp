@@ -7,9 +7,6 @@
 #include "Funktion.h"
 using namespace std;
 
-//void pFunction(ToolSettings& Settings, int argc, const char* argv[]) {
-//
-//}
 int main(int argc, const char* argv[]) {
 
 	#ifdef _DEBUG
@@ -32,19 +29,10 @@ int main(int argc, const char* argv[]) {
 	pFunction = SetKey;
 	Settings.AddFunktion(Funktion("setkey", pFunction));
 
+	//Settings.cfg is dependant on the Functions already being loaded
 	Settings.ParseToolSettings();
 
-
-
-	const char* parsedCommand = Settings.GetAliasMatch(argv[1]);
-
-	#ifdef _DEBUG
-		printf("parsedCommand: %s\n", parsedCommand);
-	#endif
 	Settings.ExecuteAliasMatch(_strdup(argv[1]), Settings, argc, argv);
-
-	//This is temporary, in reality this should only be called when we do a change.
-	//Settings.SerializeToolSettings();
 	return 0;
 
 }

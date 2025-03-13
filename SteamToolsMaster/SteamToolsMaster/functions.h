@@ -2,6 +2,7 @@
 #define FUNCTIONS_H
 #include <iostream>
 #include <cstdlib>
+//This only supports Windows, Add Support for Linux/MacOS
 static bool openFile(const std::string& path) {
 	return system(("start " + path).c_str()) == 0;
 }

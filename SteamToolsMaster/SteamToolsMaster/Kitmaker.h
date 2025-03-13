@@ -24,8 +24,11 @@ void KitMaker(ToolSettings &Settings, int &argc, const char* argv[]) {
 	while (kitmakerinput.getline(line, sizeof(line))) {
 		std::string lineString = line;
 		size_t LocationOfx = lineString.find(" x ");
+
 		std::string ItemName = lineString.substr(0, LocationOfx);
 		int ItemAmount = atoi((lineString.substr(LocationOfx + 3, sizeof(lineString) - LocationOfx)).c_str());
+
+
 		if (ItemName == "Unique Killstreak Item") {
 			total_weapons_price += Settings.GetUnique_Killstreak_Item() * ItemAmount;
 		}
