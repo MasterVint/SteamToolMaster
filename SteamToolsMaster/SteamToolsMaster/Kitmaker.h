@@ -3,7 +3,7 @@
 #include <iostream>
 #include "functions.h"
 #include "DataClass.h"
-void KitMaker(ToolSettings &Settings) {
+void KitMaker(ToolSettings &Settings, int &argc, const char* argv[]) {
 	debugPrintf("[Kitmaker Start]\n");
 	bool opened = openFile("./Kitmaker_input.txt");
 	if (opened) {
@@ -53,8 +53,9 @@ void KitMaker(ToolSettings &Settings) {
 		else if (ItemName == "Pristine Robot Brainstorm Bulb") {
 			total_weapons_price += Settings.GetPristine_Robot_Brainstorm_Bulb() * ItemAmount;
 		}
+		printf("sigma\n");
 		#ifdef _DEBUG
-				std::cout << "\"" << item << "\"\n";
+				std::cout << "\"" << ItemName << "\"\n";
 		#endif
 	}
 	size_t MetalKeyPrice = ReturnKeyWeaponValue(Settings.GetMetal_KeyPrice());
@@ -69,8 +70,7 @@ void KitMaker(ToolSettings &Settings) {
 	if (reclaimed > 0) { printf("reclaimed: %zu\n", reclaimed); };
 	if (scrap > 0) { printf("scrap: %zu\n", scrap); };
 	if (total_weapons_price > 0) { printf("weapons: %zu\n", total_weapons_price); };
-	
-	printf("Or %g keys\n", key_floatvalue);
+	printf("%g keys\n", key_floatvalue);
 	//printf("Or %g refined\n", refined_floatvalue);
 	kitmakerinput.close();
 

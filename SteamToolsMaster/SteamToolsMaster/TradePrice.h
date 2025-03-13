@@ -12,7 +12,7 @@ bool PromptItemCount(const char* messageItem, size_t& returnValue, char* input, 
 	printf("How many %s ? ", messageItem);
 	return AskForPositiveNumber(returnValue, input, MAX_SIZE);
 }
-void TradePrice(ToolSettings& Settings) {
+void TradePrice(ToolSettings &Settings, int &argc, const char* argv[]) {
 	debugPrintf("[TradePrice Start]\n");
 	const size_t MAX_SIZE = 100;
 	char input[MAX_SIZE];

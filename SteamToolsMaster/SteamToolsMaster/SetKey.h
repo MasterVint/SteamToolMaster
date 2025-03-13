@@ -3,7 +3,7 @@
 #include <iostream>
 #include "functions.h"
 #include "DataClass.h"
-void SetKey(ToolSettings &Settings) {
+void SetKey(ToolSettings &Settings, int &argc, const char* argv[]) {
 	debugPrintf("[SetKey Start]\n");
 	const size_t MAX_SIZE = 50;
 	char input[MAX_SIZE];

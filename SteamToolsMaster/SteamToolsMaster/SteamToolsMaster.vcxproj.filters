@@ -35,6 +35,9 @@
     <ClInclude Include="SetKey.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Funktion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Settings.cfg">
