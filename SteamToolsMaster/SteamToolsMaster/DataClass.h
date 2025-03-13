@@ -61,17 +61,18 @@ public:
         }
         return "none";
     }
-    void ExecuteAliasMatch(char* value, ToolSettings &Settings, int &argc, const char* argv[]) {
+    bool ExecuteAliasMatch(char* value, ToolSettings &Settings, int &argc, const char* argv[]) {
         for (Funktion& Func : Functions) {
             for (const char* Alias : Func.GetAliases()) {
                 //printf("Alias: %s, Value: %s, %s\n", Alias, value, Func.GetAliasName());
                 if (strcmp(Alias, value) == 0) {
                     Func.ExecuteFunction(Settings, argc, argv);
-                    return;
+                    return true;
                 }
             }
         }
         printf("No command or alias called \"%s\" exists.", value);
+        return false;
     }
     bool AddAlias(char* new_value, const char* category) {
         size_t InputCount = 0;
