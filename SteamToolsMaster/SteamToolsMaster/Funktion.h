@@ -7,14 +7,12 @@ private:
     const char* AliasName;
     std::vector<const char*> Aliases;
     void (*func)(ToolSettings&, int&, const char* []);
+    //char* (*parser)();
+    //void (*serializer)();
 
 public:
-    const char* GetAliasName() const {
-        return AliasName;
-    }
-     std::vector<const char*> GetAliases()  {
-        return Aliases;
-    }
+    const char* GetAliasName() const {return AliasName;}
+     std::vector<const char*> GetAliases()  {return Aliases;}
     void ExecuteFunction(ToolSettings &Settings, int &argc, const char* argv[]) {
         func(Settings, argc, argv);
     }

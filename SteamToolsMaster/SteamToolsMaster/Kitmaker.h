@@ -53,7 +53,6 @@ void KitMaker(ToolSettings &Settings, int &argc, const char* argv[]) {
 		else if (ItemName == "Pristine Robot Brainstorm Bulb") {
 			total_weapons_price += Settings.GetPristine_Robot_Brainstorm_Bulb() * ItemAmount;
 		}
-		printf("sigma\n");
 		#ifdef _DEBUG
 				std::cout << "\"" << ItemName << "\"\n";
 		#endif

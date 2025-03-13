@@ -7,34 +7,34 @@
 #include "Funktion.h"
 using namespace std;
 
-void funkt(ToolSettings& Settings, int argc, const char* argv[]) {
-
-}
+//void pFunction(ToolSettings& Settings, int argc, const char* argv[]) {
+//
+//}
 int main(int argc, const char* argv[]) {
 
-#ifdef _DEBUG
-	argc++;
-	argv[1] = "ktm";
-#endif
-	void (*funkt)(ToolSettings&, int&, const char* []);
-	ToolSettings Settings;
-
-	//Add functions
-	const char* str = "tradeprice";
-	funkt = TradePrice;
-	Settings.AddFunktion(Funktion(str, funkt));
-	funkt = KitMaker;
-	Settings.AddFunktion(Funktion("kitmaker", funkt));
-	funkt = SetKey;
-	Settings.AddFunktion(Funktion("setkey", funkt));
-
-	Settings.ParseToolSettings();
-
+	#ifdef _DEBUG
+		argc++;
+		argv[1] = "ktm";
+	#endif
 	if (argc <= 1) {
 		printf("usage: stmtool [ tradeprice | trp ] [ kitmaker | ktm ] [ setkey | key ]\n\n");
 		//printf("See \"stmtool [command] help\" for specific command help");
 		return 0;
 	}
+	void (*pFunction)(ToolSettings&, int&, const char* []);
+	ToolSettings Settings;
+
+	//Add functions
+	pFunction = TradePrice;
+	Settings.AddFunktion(Funktion("tradeprice", pFunction));
+	pFunction = KitMaker;
+	Settings.AddFunktion(Funktion("kitmaker", pFunction));
+	pFunction = SetKey;
+	Settings.AddFunktion(Funktion("setkey", pFunction));
+
+	Settings.ParseToolSettings();
+
+
 
 	const char* parsedCommand = Settings.GetAliasMatch(argv[1]);
 

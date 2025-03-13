@@ -9,11 +9,14 @@
 // 
 class ToolSettings {
 private:
+    //key
     size_t Metal_KeyPrice[4] = { 60,0,0,0 }; // Refined, Reclaimed, Scrap, Weapons
     size_t USD_KeyPrice = 170; // Cents, divide by 100 for actual number
+
     // Dynamic arrays to store the aliases
     std::vector<Funktion> Functions;
 
+    //Killstreak Kit Parts
     size_t Unique_Killstreak_Item = 292;
     size_t Unique_Specialized_Killstreak_Item = 900;
     size_t Battle_Worn_Robot_KB_808 = 20;
@@ -185,7 +188,7 @@ public:
                             copyUntilComma(match, Line, needleIndex);
                             Metal_KeyPrice[metalIndex] = parsePositiveNumber(match, sizeof(match) / sizeof(match[0]));
                             CleanValue(Metal_KeyPrice[0], Metal_KeyPrice[1], Metal_KeyPrice[2], Metal_KeyPrice[3]);
-                            printf("metals: %zu\n",Metal_KeyPrice[0]);
+                            //printf("metals: %zu\n",Metal_KeyPrice[0]);
                             metalIndex++;
                         }
                     }
