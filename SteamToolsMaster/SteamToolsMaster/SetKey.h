@@ -29,8 +29,9 @@ void SetKey(ToolSettings& Settings, int& argc, const char* argv[]) {
 
 		if (indexchar == ',') {
 			if (metal_type_index == 4) {
-				printf("Too many metals! The extra ones were ignored! Please follow the follow this format:\n");
+				printf("Too many metals! The extra ones were ignored! Please follow this format in the future:\n");
 				printf("60,1,1,1 (Refined, Reclaimed, Scrap, Weapon)\n");
+				printf("There is no need to include all the metal, 60,1,1 (Refined, Reclaimed, Scrap) would be a valid input.\n");
 				return;
 			}
 			KeyPrice[metal_type_index] = parsePositiveNumber(input, MAX_SIZE, last_comma_index, i);
@@ -53,10 +54,15 @@ void SetKey(ToolSettings& Settings, int& argc, const char* argv[]) {
 	if (KeyPrice[0] != 0) {
 		Settings.SetMetal_KeyPrice(KeyPrice);
 		Settings.SerializeToolSettings();
-		printf("Key metal price set to %zu,%zu,%zu,%zu\n", KeyPrice[0], KeyPrice[1], KeyPrice[2], KeyPrice[3]);
+		printf("Key metal price was set to %zu,%zu,%zu,%zu\n", KeyPrice[0], KeyPrice[1], KeyPrice[2], KeyPrice[3]);
 	}
 	else {
 
+		printf("Invalid input. The key metal price was not changed and is still:\n");
+		size_t* CurrentMetalKeyPrice = Settings.GetMetal_KeyPrice();
+		for (size_t i = 0; i < 4; i++) {
+			printf("%zu,", CurrentMetalKeyPrice[i]);
+		}
 	};
 
 };

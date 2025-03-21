@@ -61,13 +61,14 @@ bool copyUntilComma(char* dest, const char* src, size_t& i) {
 	return true;
 };
 size_t intPow(size_t base, size_t exponent) {
+	size_t Product = base;
 	if (exponent == 0) {
 		return 1;
 	}
 	for (size_t i = 1; i < exponent; i++) {
-		base *= base;
+		Product *= base;
 	}
-	return base;
+	return Product;
 }
 size_t CharToNumber(char number) {
 	if (int(number) == 48) {
@@ -174,7 +175,6 @@ size_t parsePositiveNumber(char* numberStr, const size_t strLen, size_t start, s
 	}
 
 	for (size_t i = numbersize; i > 0; i--) {
-		//std::cout << numberStr[numbersize - i + start] << '\n';
 		ReturnValue += CharToNumber(numberStr[numbersize - i + start]) * intPow(10, i - 1);
 	}
 	//std::cout << "retval: " << ReturnValue << '\n';
