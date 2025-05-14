@@ -29,7 +29,7 @@
     <ClInclude Include="functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DataClass.h">
+    <ClInclude Include="ToolSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SetKey.h">

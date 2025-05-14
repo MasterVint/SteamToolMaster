@@ -1,5 +1,5 @@
-#ifndef DATACLASS_H
-#define DATACLASS_H
+#ifndef ToolSettings_H
+#define ToolSettings_H
 #include <iostream>
 #include <fstream>
 #include "functions.h"
@@ -16,8 +16,8 @@ private:
     // Dynamic arrays to store the aliases
     std::vector<Funktion> Functions;
 
-    //Killstreak Kit Parts
-    size_t Unique_Killstreak_Item = 292;
+    //Killstreak Kit Parts, Cost Denoted in weapons
+    size_t Unique_Killstreak_Item = 270;
     size_t Unique_Specialized_Killstreak_Item = 900;
     size_t Battle_Worn_Robot_KB_808 = 20;
     size_t Battle_Worn_Robot_Taunt_Processor = 20;
@@ -26,6 +26,10 @@ private:
     size_t Reinforced_Robot_Humor_Supression_Pump = 2;
     size_t Reinforced_Robot_Bomb_Stabilizer = 2;
     size_t Pristine_Robot_Brainstorm_Bulb = 50;
+
+    //Visual flags
+    bool DisplayMoneyPrice = false; //not used
+    
 
 
 
@@ -41,8 +45,6 @@ public:
     void AddFunktion(Funktion func) {
         Functions.push_back(func);
     }
-
-
 
     void SetMetal_KeyPrice(size_t* NewKeyPrice) {
         for (size_t i = 0; i < 4; i++) {
@@ -64,7 +66,6 @@ public:
     bool ExecuteAliasMatch(char* value, ToolSettings &Settings, int &argc, const char* argv[]) {
         for (Funktion& Func : Functions) {
             for (const char* Alias : Func.GetAliases()) {
-                //printf("Alias: %s, Value: %s, %s\n", Alias, value, Func.GetAliasName());
                 if (strcmp(Alias, value) == 0) {
                     Func.ExecuteFunction(Settings, argc, argv);
                     return true;
@@ -106,7 +107,6 @@ public:
         }
     }
 
-    //The most horrible filereader haha
     bool SerializeToolSettings() {
         #ifdef _DEBUG
         printf("[SerializeToolSettings] Start\n");
@@ -120,7 +120,6 @@ public:
         SettingsCFG << "#keyprice,usd,price_in_cents ($1.70 == 170)" << '\n';
 
         //Write down aliases
-        SettingsCFG << "\nalias,tradeprice";
         for (Funktion& Func : Functions) {
             SettingsCFG << "\n" << "alias," << Func.GetAliasName();
             for (const char* Alias : Func.GetAliases()) {

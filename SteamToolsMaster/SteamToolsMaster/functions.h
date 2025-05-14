@@ -11,7 +11,31 @@ void debugPrintf(const char* message) {
 #ifdef _DEBUG
 	printf(message);
 #endif
-}
+};
+//Price is an array with 4 values; Refined, Reclaimed, Scrap, Weapons
+//It is assumed that everything here is in its proper denominations, aka, that there is not more than 3 reclaimed etc
+// Returns an array with two values, left side and right side in the format of xx.yy
+size_t* Metal_KeyPriceSides(size_t* Price) {
+	//Methology here, we have two sides, xx.yy = 60.66
+	//xx = refined
+	//yy = everything else
+	size_t PriceSides[2] = { 0,0 };
+	PriceSides[0] = Price[0]; // left side
+	PriceSides[1] = Price[1] * 33 + Price[2] * 11 + Price[3] * 5; // right side
+	return PriceSides;
+};
+
+//Price is an array with 4 values; Refined, Reclaimed, Scrap, Weapons
+//It is assumed that everything here is in its proper denominations, aka, that there is not more than 3 reclaimed etc
+//PriceSides is an array with two values, left side and right side in the format of xx.yy (0, 1)
+void Metal_KeyPriceSides(size_t* Price, size_t* PriceSides) {
+	//Methology here, we have two sides, xx.yy = 60.66
+	//xx = refined
+	//yy = everything else
+	PriceSides[0] = Price[0]; // left side
+	PriceSides[1] = Price[1] * 33 + Price[2] * 11 + Price[3] * 5; // right side
+};
+
 size_t countArguments(const char* args[]) {
 	size_t count = 0;
 	while (args[count] != nullptr) {
@@ -256,7 +280,7 @@ void MetalHelper(size_t &CheckAgainst, size_t &Increasing, size_t denomination) 
 	}
 	while (true) {
 		#ifdef _DEBUG
-				printf("Againsts: %zu, Increasing: %zu, Denomination: %zu\n", CheckAgainst, Increasing, denomination);
+				//printf("Againsts: %zu, Increasing: %zu, Denomination: %zu\n", CheckAgainst, Increasing, denomination);
 		#endif
 		
 		if (CheckAgainst >= denomination) {
