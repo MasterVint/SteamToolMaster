@@ -10,7 +10,6 @@ void KitMaker(ToolSettings &Settings, int &argc, const char* argv[]) {
 	size_t CurrentKeyPriceSides[2];
 	Metal_KeyPriceSides(Settings.GetMetal_KeyPrice(), CurrentKeyPriceSides);
 	printf("Current Key price is %zu.%zu Refined\n", CurrentKeyPriceSides[0], CurrentKeyPriceSides[1]);
-
 	bool opened = openFile("./Kitmaker_input.txt");
 	if (opened) {
 		printf("Enter the fabricator inputs in the file, example provided.\n");

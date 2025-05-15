@@ -22,15 +22,12 @@ int main(int argc, const char* argv[]) {
 	//All functions have to follow this ruleset
 	//In case you want to add stored data you could either create a custom file reading and writing solution in your function
 	//Or edit/add values stored by ToolSettings
-	void (*pFunction)(ToolSettings&, int&, const char* []);
+	//void (*pFunction)(ToolSettings&, int&, const char* []);
 
 	//Add functions and corresponding true names
-	pFunction = TradePrice;
-	Settings.AddFunktion(Funktion("tradeprice", pFunction));
-	pFunction = KitMaker;
-	Settings.AddFunktion(Funktion("kitmaker", pFunction));
-	pFunction = SetKey;
-	Settings.AddFunktion(Funktion("setkey", pFunction));
+	Settings.AddFunktion(Funktion("tradeprice", TradePrice));
+	Settings.AddFunktion(Funktion("kitmaker", KitMaker));
+	Settings.AddFunktion(Funktion("setkey", SetKey));
 
 	//Settings.cfg is dependant on the Functions already being loaded
 	Settings.ParseToolSettings();
