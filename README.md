@@ -1,11 +1,12 @@
 # SteamToolMaster
 A solution which provides various tools for items on steam built entirely on c++, current features listed below
+Refer to the [Wiki](https://github.com/MasterVint/SteamToolMaster/wiki) for more in depth help
 ### TradePrice
 > Calculate the total cost of multiple items denoted in keys and metal
 ### KitMaker
 > Calculate the price of turning a Professional/Specialized killstreak fabricator into a kit
 
-# Installation Guide
+# Build it yourself
 ### Step 1
 > Download the ZIP file from the [main branch](https://github.com/MasterVint/SteamToolMaster) and extract it to a desired folder
 ### Step 2
