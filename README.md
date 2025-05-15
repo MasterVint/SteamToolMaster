@@ -27,14 +27,10 @@ SteamToolMaster.exe %*
 ```
 >stmtool
 usage: stmtool [ tradeprice | trade | trp]
-
-See "stmtool [command] help" for specific command help
 ```
 ### Configuration
 > Notice that we could rename our .bat file to e.g "sigma.bat" and we'd be able to call SteamToolMaster like how we did with stmtool.
 ```
 >sigma
 usage: sigma [ tradeprice | trade | trp]
-
-See "sigma [command] help" for specific command help
 ```
