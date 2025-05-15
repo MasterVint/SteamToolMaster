@@ -1,5 +1,6 @@
 # SteamToolMaster
 A solution which provides various tools for items on steam built entirely on c++, current features listed below
+Refer to the [Wiki](https://github.com/MasterVint/SteamToolMaster/wiki) for more in depth help
 ### TradePrice
 > Calculate the total cost of multiple items denoted in keys and metal
 ### KitMaker
