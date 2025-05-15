@@ -84,6 +84,21 @@ bool copyUntilComma(char* dest, const char* src, size_t& i) {
 	i++;
 	return true;
 };
+
+bool copyUntilComma(char* dest, const char* src, size_t& i, size_t MAX_SIZE) {
+	size_t is = i;
+	while (src[i] != ',' && src[i] != '\0' && src[i] != '\n') {
+		dest[i - is] = src[i];
+		// std::cout << (i - is) << src[i] << std::endl;
+		i++;
+		if (i - is >= MAX_SIZE) {
+			return false;
+		}
+	}
+	dest[i - is] = '\0';
+	i++;
+	return true;
+};
 size_t intPow(size_t base, size_t exponent) {
 	size_t Product = base;
 	if (exponent == 0) {

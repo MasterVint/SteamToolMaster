@@ -214,4 +214,46 @@ public:
         return true;
     }
 };
+
+void AddAlias(ToolSettings& Settings, int& argc, const char* argv[]) {
+    debugPrintf("[AddAlias Start]\n");
+    const size_t MAX_SIZE = 100;
+    char input[MAX_SIZE];
+
+    char TrueName[50] = {};
+    printf("Input here should be in the format of TrueFunctionName,aliasname1,aliasname2\n");
+    printf("Add Alias: ");
+    std::cin.clear();
+    std::cin.get(input, MAX_SIZE);
+    std::cin.ignore(1000, '\n');
+    //The input here should be in the format of "TrueFunctionName,alias,alias,alias..."
+    for (size_t i = 0; i < MAX_SIZE; i++) {
+        char& charAtIndex = input[i];
+        if (charAtIndex == NULL) {
+            break;
+        }
+        if (TrueName[0] == NULL) {
+            bool success = copyUntilComma(TrueName, input, i, 50);
+            if (!success) {
+                printf("Failed: %s\n", TrueName);
+            }
+        }
+        char alias[50] = {};
+        bool success = copyUntilComma(alias, input, i, 50);
+        if (!success) {
+            break;
+        }
+        success = Settings.AddAlias(alias, TrueName);
+        if (!success) {
+            printf("\"%s\" isn't an existing function", TrueName);
+        }
+        else {
+            printf("added alias: \"%s\" to \"%s\"\n", alias, TrueName);
+        }
+        
+    }
+   // bool AddAlias(char* new_value, const char* category);
+   // char* FunktionTrueName, char* Alias
+    debugPrintf("[AddAlias End]\n");
+}
 #endif
