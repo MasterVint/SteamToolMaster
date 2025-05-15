@@ -2,6 +2,7 @@
 #define FUNCTIONS_H
 #include <iostream>
 #include <cstdlib>
+//This only supports Windows, Add Support for Linux/MacOS
 static bool openFile(const std::string& path) {
 	return system(("start " + path).c_str()) == 0;
 }
@@ -10,7 +11,31 @@ void debugPrintf(const char* message) {
 #ifdef _DEBUG
 	printf(message);
 #endif
-}
+};
+//Price is an array with 4 values; Refined, Reclaimed, Scrap, Weapons
+//It is assumed that everything here is in its proper denominations, aka, that there is not more than 3 reclaimed etc
+// Returns an array with two values, left side and right side in the format of xx.yy
+size_t* Metal_KeyPriceSides(size_t* Price) {
+	//Methology here, we have two sides, xx.yy = 60.66
+	//xx = refined
+	//yy = everything else
+	size_t PriceSides[2] = { 0,0 };
+	PriceSides[0] = Price[0]; // left side
+	PriceSides[1] = Price[1] * 33 + Price[2] * 11 + Price[3] * 5; // right side
+	return PriceSides;
+};
+
+//Price is an array with 4 values; Refined, Reclaimed, Scrap, Weapons
+//It is assumed that everything here is in its proper denominations, aka, that there is not more than 3 reclaimed etc
+//PriceSides is an array with two values, left side and right side in the format of xx.yy (0, 1)
+void Metal_KeyPriceSides(size_t* Price, size_t* PriceSides) {
+	//Methology here, we have two sides, xx.yy = 60.66
+	//xx = refined
+	//yy = everything else
+	PriceSides[0] = Price[0]; // left side
+	PriceSides[1] = Price[1] * 33 + Price[2] * 11 + Price[3] * 5; // right side
+};
+
 size_t countArguments(const char* args[]) {
 	size_t count = 0;
 	while (args[count] != nullptr) {
@@ -28,14 +53,46 @@ bool CompareCharArray(const char* argv, const char* comparative[]) {
 	}
 	return false;
 }
+const char** resizeArray(const char** old_array, size_t& oldsize, size_t& newsize) {
+	const char** new_array = new const char* [newsize];
+	if (newsize > oldsize) {
+		for (size_t i = 0; i < oldsize; i++) {
+			new_array[i] = old_array[i];
+		}
+	}
+	else {
+		for (size_t i = 0; i < newsize; i++) {
+			new_array[i] = old_array[i];
+		}
+	}
+	delete[] old_array;
+	return new_array;
+};
+void ClearArray(char* array, const size_t len) {
+	for (size_t i = 0; i < len; i++) {
+		array[i] = NULL;
+	}
+};
+bool copyUntilComma(char* dest, const char* src, size_t& i) {
+	size_t is = i;
+	while (src[i] != ',' && src[i] != '\0' && src[i] != '\n') {
+		dest[i - is] = src[i];
+		// std::cout << (i - is) << src[i] << std::endl;
+		i++;
+	}
+	dest[i - is] = '\0';
+	i++;
+	return true;
+};
 size_t intPow(size_t base, size_t exponent) {
+	size_t Product = base;
 	if (exponent == 0) {
 		return 1;
 	}
 	for (size_t i = 1; i < exponent; i++) {
-		base *= base;
+		Product *= base;
 	}
-	return base;
+	return Product;
 }
 size_t CharToNumber(char number) {
 	if (int(number) == 48) {
@@ -62,8 +119,6 @@ size_t CharToNumber(char number) {
 	return 0;
 }
 
-//lets practice using input 178 = 1.78
-// 1914 = 19.14
 char* InsertDecimalPoint(char* number) {
 	size_t length = 0; // this would become 3 for 178
 	while (number[length] != '\0') {
@@ -98,7 +153,7 @@ char* InsertDecimalPoint(char* number) {
 	
 }
 
-//Must use delete keyword on output to prevent a memory leak.
+//Must use the delete keyword on output to prevent a memory leak.
 char* SerializePositiveNumber(size_t& number) {
 	size_t temp = number;
 	size_t digitCount = 0;
@@ -144,7 +199,6 @@ size_t parsePositiveNumber(char* numberStr, const size_t strLen, size_t start, s
 	}
 
 	for (size_t i = numbersize; i > 0; i--) {
-		//std::cout << numberStr[numbersize - i + start] << '\n';
 		ReturnValue += CharToNumber(numberStr[numbersize - i + start]) * intPow(10, i - 1);
 	}
 	//std::cout << "retval: " << ReturnValue << '\n';
@@ -220,10 +274,19 @@ size_t ReturnKeyWeaponValue(size_t keyPrice[4]) {
 }
 
 void MetalHelper(size_t &CheckAgainst, size_t &Increasing, size_t denomination) {
+	if (denomination <= 0) {
+		printf("[MetalHelper ERROR]: denomination is less or equal to zero\n");
+		return;
+	}
 	while (true) {
+		#ifdef _DEBUG
+				//printf("Againsts: %zu, Increasing: %zu, Denomination: %zu\n", CheckAgainst, Increasing, denomination);
+		#endif
+		
 		if (CheckAgainst >= denomination) {
 			Increasing += 1;
 			CheckAgainst -= denomination;
+			//printf("wane!\n");
 		}
 		else {
 			break;

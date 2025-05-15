@@ -2,9 +2,14 @@
 #define KITMAKER_H
 #include <iostream>
 #include "functions.h"
-#include "DataClass.h"
-void KitMaker(ToolSettings &Settings) {
+#include "ToolSettings.h"
+void KitMaker(ToolSettings &Settings, int &argc, const char* argv[]) {
 	debugPrintf("[Kitmaker Start]\n");
+
+	//Get Current Key Price
+	size_t CurrentKeyPriceSides[2];
+	Metal_KeyPriceSides(Settings.GetMetal_KeyPrice(), CurrentKeyPriceSides);
+	printf("Current Key price is %zu.%zu Refined\n", CurrentKeyPriceSides[0], CurrentKeyPriceSides[1]);
 	bool opened = openFile("./Kitmaker_input.txt");
 	if (opened) {
 		printf("Enter the fabricator inputs in the file, example provided.\n");
@@ -24,8 +29,11 @@ void KitMaker(ToolSettings &Settings) {
 	while (kitmakerinput.getline(line, sizeof(line))) {
 		std::string lineString = line;
 		size_t LocationOfx = lineString.find(" x ");
+
 		std::string ItemName = lineString.substr(0, LocationOfx);
 		int ItemAmount = atoi((lineString.substr(LocationOfx + 3, sizeof(lineString) - LocationOfx)).c_str());
+
+
 		if (ItemName == "Unique Killstreak Item") {
 			total_weapons_price += Settings.GetUnique_Killstreak_Item() * ItemAmount;
 		}
@@ -54,7 +62,7 @@ void KitMaker(ToolSettings &Settings) {
 			total_weapons_price += Settings.GetPristine_Robot_Brainstorm_Bulb() * ItemAmount;
 		}
 		#ifdef _DEBUG
-				std::cout << "\"" << item << "\"\n";
+				std::cout << "\"" << ItemName << "\" " << ItemAmount << "\n";
 		#endif
 	}
 	size_t MetalKeyPrice = ReturnKeyWeaponValue(Settings.GetMetal_KeyPrice());
@@ -63,15 +71,14 @@ void KitMaker(ToolSettings &Settings) {
 	size_t keys = 0, refined = 0, reclaimed = 0, scrap = 0, weapons = 0;;
 	MetalHelper(total_weapons_price, keys, MetalKeyPrice);
 	CleanValue(refined, reclaimed, scrap, total_weapons_price);
+
 	printf("//// Total Crafting Cost ////\n");
-	if (keys > 0) { printf("keys: %zu\n", keys); };
-	if (refined > 0) { printf("refined: %zu\n", refined); };
-	if (reclaimed > 0) { printf("reclaimed: %zu\n", reclaimed); };
-	if (scrap > 0) { printf("scrap: %zu\n", scrap); };
-	if (total_weapons_price > 0) { printf("weapons: %zu\n", total_weapons_price); };
-	
-	printf("Or %g keys\n", key_floatvalue);
-	//printf("Or %g refined\n", refined_floatvalue);
+	if (keys > 0) { printf("%zu keys, ", keys); };
+	if (refined > 0) { printf("%zu Refined, ", refined); };
+	if (reclaimed > 0) { printf("%zu reclaimed, ", reclaimed); };
+	if (scrap > 0) { printf("%zu scrap, ", scrap); };
+	if (total_weapons_price > 0) { printf("%zu weapons", total_weapons_price); };
+	printf("\n%g keys\n", key_floatvalue);
 	kitmakerinput.close();
 
 	//Write File

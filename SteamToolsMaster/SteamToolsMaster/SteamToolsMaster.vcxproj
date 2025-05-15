@@ -130,8 +130,9 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DataClass.h" />
+    <ClInclude Include="ToolSettings.h" />
     <ClInclude Include="functions.h" />
+    <ClInclude Include="Funktion.h" />
     <ClInclude Include="Kitmaker.h" />
     <ClInclude Include="SetKey.h" />
     <ClInclude Include="TradePrice.h" />

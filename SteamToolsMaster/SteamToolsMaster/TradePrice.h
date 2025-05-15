@@ -2,18 +2,24 @@
 #define TRADEPRICE_H
 #include <iostream>
 #include "functions.h"
-#include "DataClass.h"
+#include "ToolSettings.h"
 
 bool PromptItemCount(const char* messageItem, size_t& returnValue, char* input, const size_t& MAX_SIZE) {
 	printf("How many %s ? ", messageItem);
 	return AskForPositiveNumber(returnValue, input, MAX_SIZE);
 }
-void TradePrice(ToolSettings& Settings) {
+
+//Calculate the cost of items in a trade
+void TradePrice(ToolSettings &Settings, int &argc, const char* argv[]) {
 	debugPrintf("[TradePrice Start]\n");
+
+	//Get Current Key Price
+	size_t CurrentKeyPriceSides[2];
+	Metal_KeyPriceSides(Settings.GetMetal_KeyPrice(), CurrentKeyPriceSides);
+	printf("Current Key price is %zu.%zu Refined\n", CurrentKeyPriceSides[0], CurrentKeyPriceSides[1]);
 	const size_t MAX_SIZE = 100;
 	char input[MAX_SIZE];
 
-	//size_t numbersize = 0;
 	size_t AmountOfDifferentItems = 0;
 	size_t AmountOfItems = 0;
 	size_t total_cost = 0;
@@ -52,10 +58,5 @@ void TradePrice(ToolSettings& Settings) {
 	if (Scrap > 0) { std::cout << "Scrap: " << Scrap << '\n'; };
 	if (Weapons > 0) { std::cout << "Weapons: " << Weapons << '\n'; };
 	return;
-}
-
-//we might just have everything in the TradePrice() function
-void TradePriceHelp() {
-
 }
 #endif

@@ -1,1 +1,5 @@
-//Just copy and paste the input items from your kit's steam inventory page, example given below:
+//Replace this files contents with the input items from your kit's steam inventory page, example given below:
+Unique Specialized Killstreak Item x 2
+Battle-Worn Robot KB-808 x 13
+Battle-Worn Robot Taunt Processor x 3
+Reinforced Robot Emotion Detector x 3
