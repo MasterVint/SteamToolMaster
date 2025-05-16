@@ -34,3 +34,4 @@ usage: stmtool [ tradeprice | trade | trp]
 >sigma
 usage: sigma [ tradeprice | trade | trp]
 ```
+Note: does not change to sigma
