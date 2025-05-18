@@ -7,6 +7,13 @@ static bool openFile(const std::string& path) {
 	return system(("start " + path).c_str()) == 0;
 }
 
+template<typename... Args>
+void debugPrintf(const char* format, Args... args) {
+#ifdef _DEBUG
+	std::printf(format, args...);
+#endif
+};
+
 void debugPrintf(const char* message) {
 #ifdef _DEBUG
 	printf(message);
@@ -84,6 +91,66 @@ bool copyUntilComma(char* dest, const char* src, size_t& i) {
 	i++;
 	return true;
 };
+
+bool copyUntilSpace(char* dest, const char* src, size_t& i, size_t MAX_SIZE) {
+	size_t is = i;
+	while (src[i] != ' ' && src[i] != '\0' && src[i] != '\n') {
+		dest[i - is] = src[i];
+		i++;
+		if (i - is >= MAX_SIZE) {
+			return false;
+		}
+	}
+	dest[i - is] = '\0';
+	i++;
+	return true;
+}
+void ToLowerCase(char* str) {
+	for (int i = 0; str[i] != '\0'; ++i) {
+		str[i] = std::tolower(static_cast<unsigned char>(str[i]));
+	}
+}
+
+char* ToLowerCase(const char* str) {
+
+	int i = 0;
+	for (; str[i] != '\0'; ++i) {
+		//str[i] = std::tolower(static_cast<unsigned char>(str[i]));
+	}
+	char* returnStr = new char[i + 1];
+	i = 0;
+	for (; str[i] != '\0'; ++i) {
+		returnStr[i] = std::tolower(static_cast<unsigned char>(str[i]));
+	}
+	returnStr[i] = '\0';
+	return returnStr;
+
+}
+
+bool copyUntilChar(char* dest, const char* src, size_t MAX_SIZE, char needles[], size_t needleCount, size_t& i) {
+	size_t is = i;
+	bool running = true;
+	while (running == true) {
+		for (size_t u = 0; u < needleCount; u++) {
+			//debugPrintf("U index %zu\n", u);
+			if (needles[u] == src[i]) {
+				running = false;
+				debugPrintf("Stopped copyUntilChar at %zu\n", i);
+			}
+
+		}
+		if (running == true) {
+			dest[i - is] = src[i];
+			i++;
+			if (i - is >= MAX_SIZE) {
+				return false;
+			}
+		}
+	}
+	dest[i - is] = '\0';
+	i++;
+	return true;
+}
 
 bool copyUntilComma(char* dest, const char* src, size_t& i, size_t MAX_SIZE) {
 	size_t is = i;
@@ -218,6 +285,32 @@ size_t parsePositiveNumber(char* numberStr, const size_t strLen, size_t start, s
 	}
 	//std::cout << "retval: " << ReturnValue << '\n';
 	return ReturnValue;
+}
+bool parsePositiveNumber(char* numberStr, const size_t strLen, size_t& ReturnValue) {
+	size_t numbersize = 0;
+	for (size_t i = 0; i < strLen; i++) {
+		if (int(numberStr[i]) == 0) {
+			if (i == 0) {
+				return false;
+			}
+			break; // index is a '/0' character, aka no more input
+		}
+		if (int(numberStr[i]) >= 48 && int(numberStr[i]) <= 57) {
+			//character is a number
+			numbersize++;
+		}
+		else {
+			numbersize = -1;
+			return false;
+			break;
+		}
+		//std::cout << int(input[i]) << std::endl;
+	}
+
+	for (size_t i = numbersize; i > 0; i--) {
+		ReturnValue += CharToNumber(numberStr[numbersize - i]) * intPow(10, i - 1);
+	}
+	return true;
 }
 size_t parsePositiveNumber(char* numberStr, const size_t strLen) {
 	size_t ReturnValue = 0;
