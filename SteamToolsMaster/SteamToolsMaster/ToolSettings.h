@@ -141,14 +141,14 @@ public:
         return false;
         
     }
-    bool AddAlias(char* new_value, const char* category) {
+    bool AddAlias(char* new_alias, const char* category) {
         char* lowerCaseCategory = ToLowerCase(category);
         size_t InputCount = 0;
         for (Funktion& Func : Functions) {
-            debugPrintf("[AddAlias] truname: %s | %s\n", new_value, category);
+            debugPrintf("[AddAlias] truname: %s | %s\n", new_alias, category);
             if (strcmp(ToLowerCase(Func.GetAliasName()), lowerCaseCategory) == 0) {
-                debugPrintf("[AddAlias] Adding \"%s\"\n", new_value);
-                Func.AddAlias(new_value);
+                debugPrintf("[AddAlias] Adding \"%s\"\n", new_alias);
+                Func.AddAlias(new_alias);
                 return true;
             }
         }
