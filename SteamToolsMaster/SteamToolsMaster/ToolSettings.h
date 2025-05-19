@@ -76,7 +76,7 @@ public:
                 return true;
             }
             for (const char* Alias : Func.GetAliases()) {
-                debugPrintf("\"%s\" and \"%s\"\n", ToLowerCase(Alias), value);
+                //debugPrintf("[ExecuteAliasMatch] \"%s\" and \"%s\"\n", ToLowerCase(Alias), value);
                 if (strcmp(ToLowerCase(Alias), value) == 0) {
                     Func.ExecuteFunction(Settings, argc, argv);
                     return true;
@@ -110,6 +110,36 @@ public:
             }
         }
         return success;
+    }
+    //Adds an alias and makes sure it doesn't already exist
+    bool AddSafeAlias(char* new_alias, const char* category) {
+        char* lowerCaseCategory = ToLowerCase(category);
+        ToLowerCase(new_alias);
+        for (Funktion& Func : Functions) {
+            if (strcmp(new_alias, ToLowerCase(Func.GetAliasName())) == 0) {
+                debugPrintf("[AddSafeAlias] Alias \"%s\" Already Exists as the function \"%s\"\n", new_alias, Func.GetAliasName());
+                debugPrintf("An alias can not share the same name as another alias or function\n");
+                return false;
+            }
+            for (const char* Alias : Func.GetAliases()) {
+                //debugPrintf("[AddSafeAlias] \"%s\" and \"%s\"\n", ToLowerCase(Alias), new_alias);
+                if (strcmp(ToLowerCase(Alias), new_alias) == 0) {
+                    debugPrintf("[AddSafeAlias] Alias \"%s\" Already Exists as the alias \"%s\"\n", new_alias, Alias);
+                    debugPrintf("An alias can not share the same name as another alias or function\n");
+                    return false;
+                }
+            }
+        }
+        for (Funktion& Func : Functions) {
+            if (strcmp(ToLowerCase(Func.GetAliasName()), lowerCaseCategory) == 0) {
+                debugPrintf("[AddAlias] Adding \"%s\"\n", new_alias);
+                Func.AddAlias(new_alias);
+                return true;
+            }
+        }
+       // debugPrintf("[AddAlias] Nothing Happened \"%s\" \"%s\"\n", new_alias, lowerCaseCategory);
+        return false;
+        
     }
     bool AddAlias(char* new_value, const char* category) {
         char* lowerCaseCategory = ToLowerCase(category);
@@ -210,7 +240,7 @@ public:
                         #ifdef _DEBUG
                            printf("[ParseToolSettings] Adding %s: %s\n", TrueName, match);
                         #endif
-                           if (!AddAlias(match, TrueName)) {
+                           if (!AddSafeAlias(match, TrueName)) {
                                printf("Adding Alias Failed!\n");
                                debugPrintf("[ParseToolSettings] Adding Alias Failed, TrueName: %s, match: %s\n", TrueName, match);
                            }
@@ -348,7 +378,7 @@ void EditAlias(ToolSettings& Settings, int& argc, const char* argv[]) {
 
                 if (SecondArgument[0] != NULL) {
                     // We have a second argument
-                    Settings.AddAlias(SecondArgument, func.GetAliasName());
+                    Settings.AddSafeAlias(SecondArgument, func.GetAliasName());
                     printf("Added \"%s\" as an alias for \"%s\"\n", SecondArgument, func.GetAliasName());
                     return;
                 }
@@ -360,7 +390,7 @@ void EditAlias(ToolSettings& Settings, int& argc, const char* argv[]) {
                     std::cin.get(Aliasinput, MAX_SIZE);
                     std::cin.ignore(1000, '\n');
                     if (Aliasinput[0] != NULL && Aliasinput[0] != '\n' && Aliasinput[0] != '\0') {
-                        Settings.AddAlias(Aliasinput, func.GetAliasName());
+                        Settings.AddSafeAlias(Aliasinput, func.GetAliasName());
                         printf("Added \"%s\" as an alias for \"%s\"\n", Aliasinput, func.GetAliasName());
                     }
                     else {

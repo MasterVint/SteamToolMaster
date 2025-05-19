@@ -15,7 +15,7 @@ int main(int argc, const char* argv[]) {
 		argv[1] = "editalias";
 	#endif
 	if (argc <= 1) {
-		printf("usage: stmtool [ tradeprice | trp ] [ kitmaker | ktm ] [ setkey | key ]\n\n");
+		printf("usage: stmtool [ tradeprice ] [ kitmaker ] [ setkey ] [ editalias ]\n");
 		//printf("See \"stmtool [command] help\" for specific command help");
 		return 0;
 	}
