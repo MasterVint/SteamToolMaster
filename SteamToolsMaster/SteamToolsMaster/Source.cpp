@@ -12,10 +12,10 @@ int main(int argc, const char* argv[]) {
 	ToolSettings Settings;
 	#ifdef _DEBUG
 		argc++;
-		argv[1] = "trp";
+		argv[1] = "editalias";
 	#endif
 	if (argc <= 1) {
-		printf("usage: stmtool [ tradeprice | trp ] [ kitmaker | ktm ] [ setkey | key ]\n\n");
+		printf("usage: stmtool [ tradeprice ] [ kitmaker ] [ setkey ] [ editalias ]\n");
 		//printf("See \"stmtool [command] help\" for specific command help");
 		return 0;
 	}
@@ -25,9 +25,11 @@ int main(int argc, const char* argv[]) {
 	//void (*pFunction)(ToolSettings&, int&, const char* []);
 
 	//Add functions and corresponding true names
-	Settings.AddFunktion(Funktion("tradeprice", TradePrice));
-	Settings.AddFunktion(Funktion("kitmaker", KitMaker));
-	Settings.AddFunktion(Funktion("setkey", SetKey));
+	Settings.AddFunktion(Funktion("TradePrice", TradePrice));
+	Settings.AddFunktion(Funktion("KitMaker", KitMaker));
+	Settings.AddFunktion(Funktion("SetKey", SetKey));
+
+	Settings.AddFunktion(Funktion("EditAlias", EditAlias));
 
 	//Settings.cfg is dependant on the Functions already being loaded
 	Settings.ParseToolSettings();

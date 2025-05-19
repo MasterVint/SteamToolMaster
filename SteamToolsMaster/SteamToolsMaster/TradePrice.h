@@ -9,6 +9,31 @@ bool PromptItemCount(const char* messageItem, size_t& returnValue, char* input, 
 	return AskForPositiveNumber(returnValue, input, MAX_SIZE);
 }
 
+
+
+// WIP Other way to ask for price
+/*
+Questions:
+How many different items? 3
+How many items of item [1]? 27
+The cost of one such item? 1 60.77 // One way
+// [Keys] [Metal]
+
+How many items of item [2]? 7
+The cost of one such item? 0 20 // second way
+// [Keys] [Metal]
+
+How many items of item [3]? 3
+The cost of one such item? 6 60,2,1,3 // third way
+// [Keys] [refined,reclaimed,scrap,weapons]
+
+
+
+
+
+
+
+*/
 //Calculate the cost of items in a trade
 void TradePrice(ToolSettings &Settings, int &argc, const char* argv[]) {
 	debugPrintf("[TradePrice Start]\n");
