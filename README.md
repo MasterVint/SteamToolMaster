@@ -1,10 +1,14 @@
 # SteamToolMaster
 A solution which provides various tools for items on steam built entirely on c++, current features listed below
-Refer to the [Wiki](https://github.com/MasterVint/SteamToolMaster/wiki) for more in depth help. Currently only supports Windows
+Refer to the [Wiki](https://github.com/MasterVint/SteamToolMaster/wiki) for more in depth help. Currently only supports Windows.
 ### TradePrice
 > Calculate the total cost of multiple items denoted in keys and metal
 ### KitMaker
 > Calculate the price of turning a Professional/Specialized killstreak fabricator into a kit
+### SetKey
+> Set the price of keys used by the program
+### EditAlias
+> Add, Remove or Edit aliases for functions used by the program
 
 # Build it yourself
 ### Step 1
@@ -26,12 +30,12 @@ SteamToolMaster.exe %*
 > You have now added SteamToolMaster to your computer! Type stmtool from any command prompt on your pc to use!
 ```
 >stmtool
-usage: stmtool [ tradeprice | trade | trp]
+usage: stmtool [ tradeprice ] [ kitmaker ] [ setkey ] [ editalias ]
 ```
 ### Configuration
 > Notice that we could rename our .bat file to e.g "sigma.bat" and we'd be able to call SteamToolMaster like how we did with stmtool.
 ```
 >sigma
-usage: sigma [ tradeprice | trade | trp]
+usage: stmtool [ tradeprice ] [ kitmaker ] [ setkey ] [ editalias ]
 ```
-Note: does not change to sigma
+If you want to add a new function, help is found at the wiki.
