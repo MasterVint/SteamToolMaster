@@ -28,7 +28,6 @@ int main(int argc, const char* argv[]) {
 	Settings.AddFunktion(Funktion("TradePrice", TradePrice));
 	Settings.AddFunktion(Funktion("KitMaker", KitMaker));
 	Settings.AddFunktion(Funktion("SetKey", SetKey));
-
 	Settings.AddFunktion(Funktion("EditAlias", EditAlias));
 
 	//Settings.cfg is dependant on the Functions already being loaded
